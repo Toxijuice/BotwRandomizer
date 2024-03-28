@@ -63,7 +63,7 @@ namespace BotwRandoLib
                     throw new ArgumentException("One of the supplied Paths was not valid or doesn't exist!");
 
                 // Delete the graphic pack if one already exists, and re-create it
-                string gfxPackNewPath = Path.Combine(gfxPackPath, "BotW Randomizer");
+                string gfxPackNewPath = Path.Combine(gfxPackPath, "BotW Randomizer " + seed);
 
                 try
                 {
@@ -85,7 +85,7 @@ namespace BotwRandoLib
                 File.WriteAllText(spoilerLogPath, "Seed: " + seed + "\n");
 
                 string gfxPackRulesFile = Path.Combine(gfxPackNewPath, "rules.txt");
-                File.WriteAllLines(gfxPackRulesFile, RulesTextFile(VERSION));
+                File.WriteAllLines(gfxPackRulesFile, RulesTextFile(VERSION, seed));
 
                 // Useful path variables
                 string dlcMainFieldPath = Path.Combine(dlcPath, "0010", "Map", "MainField");
@@ -275,12 +275,12 @@ namespace BotwRandoLib
             ms.Close();
         }
 
-        private static string[] RulesTextFile(string version)
+        private static string[] RulesTextFile(string version, string seed)
         {
             List<string> lines = new List<string>();
             lines.Add("[Definition]");
             lines.Add("titleIds = 00050000101C9300,00050000101C9400,00050000101C9500");
-            lines.Add("name = BotW Randomizer");
+            lines.Add("name = BotW Randomizer [" + seed + "]");
             lines.Add("path = \"The Legend of Zelda: Breath of the Wild/BotW Randomizer\"");
             lines.Add($"description = Randomizer Version {version}|You need to enable this to play the Randomizer!");
             lines.Add("version = 4");
