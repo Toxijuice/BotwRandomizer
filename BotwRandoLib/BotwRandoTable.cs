@@ -397,7 +397,7 @@ namespace BotwRandoLib
             }
 
             int missingChests = chestsCount - ChestItems.Count;
-            Console.WriteLine(missingChests);
+            // Console.WriteLine(missingChests);
         }
     }
 }

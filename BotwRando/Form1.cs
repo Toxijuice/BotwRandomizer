@@ -248,6 +248,7 @@ namespace BotwRando
             randomizeRupeesCheckbox.CheckedChanged += (sender, e) => CheckedBox(randomizeOresCheckbox, ref settingsFile.CheckBoxSettings.RandomizeOresCheckbox);
             randomizeArrowsCheckbox.CheckedChanged += (sender, e) => CheckedBox(randomizeArrowsCheckbox, ref settingsFile.CheckBoxSettings.RandomizeArrowsCheckbox);
             randomizeArmorShopsCheckbox.CheckedChanged += (sender, e) => CheckedBox(randomizeArmorShopsCheckbox, ref settingsFile.CheckBoxSettings.RandomizeArmorShops);
+            chaosCheckbox.CheckedChanged += (sender, e) => CheckedBox(chaosCheckbox, ref settingsFile.CheckBoxSettings.ChaosCheckbox);
         }
     }
 }

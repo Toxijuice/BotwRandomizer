@@ -36,6 +36,7 @@ namespace BotwRando
         public CheckBoxOption RandomizeRupeesCheckbox = new CheckBoxOption("randomizeRupeesCheckbox", true);
         public CheckBoxOption RandomizeArrowsCheckbox = new CheckBoxOption("randomizeArrowsCheckbox", true);
         public CheckBoxOption RandomizeArmorShops = new CheckBoxOption("randomizeArmorShopsCheckbox", true);
+        public CheckBoxOption ChaosCheckbox = new CheckBoxOption("chaosCheckbox", true);
 
         public Dictionary<string, bool> ToDictionary()
         {

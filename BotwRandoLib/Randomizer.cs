@@ -21,6 +21,8 @@ namespace BotwRandoLib {
 
         private static string spoilerLogPath = "";
 
+        private static bool chaosmode = false;
+
         private const int SPIRIT_ORB_COUNT = 240;
         private const int CHEST_COUNT = 1398;
 
@@ -39,6 +41,8 @@ namespace BotwRandoLib {
         /// <exception cref="ArgumentException"></exception>
         public static void RandomizeGame(string basePath, string updatePath, string dlcPath, string gfxPackPath, Dictionary<string, bool> randomizationSettings, out int progress, string seed = null) {
             if (String.IsNullOrWhiteSpace(seed)) seed = GenerateSeed();
+
+            chaosmode = randomizationSettings["chaosCheckbox"];
 
             random = new Random(unchecked((int)Crc32.Compute(seed)));
 
@@ -614,7 +618,8 @@ namespace BotwRandoLib {
                 // Only randomize actor if the player chose to
                 if (ShouldBeRandomized(unitConfigName, randomizationSettings)) {
                     // Randomize the unit name of a map actor
-                    string newObject = GetRandomMapObject(unitConfigName);
+                    Console.WriteLine(string.Format("[{0}] {1} - {2}",chaosmode, mapType, unitConfigName));
+                    string newObject = chaosmode ? GetAnyRandomMapObject(unitConfigName) : GetRandomMapObject(unitConfigName);
                     if (newObject != null) {
                         ModifyActorName(ref actorObj, newObject, mapType);
                     }
@@ -680,6 +685,32 @@ namespace BotwRandoLib {
                     if (overworldObjectsTable.OverworldObjects.ElementAt(i).Key[j] == objectName) {
                         int listRandomIndex = random.Next(overworldObjectsTable.OverworldObjects.ElementAt(i).Key.Count);
                         string newObject = overworldObjectsTable.OverworldObjects.ElementAt(i).Key[listRandomIndex];
+
+                        if (overworldObjectsTable.OverworldObjects.ElementAt(i).Value == true) {
+                            overworldObjectsTable.OverworldObjects.ElementAt(i).Key.Remove(newObject);
+                        }
+
+                        return newObject;
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        private static string GetAnyRandomMapObject(string objectName) {
+            // Get a random value from a list if the object is found within said list
+            for (int i = 0; i < overworldObjectsTable.OverworldObjects.Count; i++) {
+                for (int j = 0; j < overworldObjectsTable.OverworldObjects.ElementAt(i).Key.Count; j++) {
+                    if (overworldObjectsTable.OverworldObjects.ElementAt(i).Key[j] == objectName) {
+
+                        int randListIndex = random.Next(overworldObjectsTable.OverworldObjects.Count-1);
+                        int listRandomIndex = random.Next(overworldObjectsTable.OverworldObjects.ElementAt(randListIndex).Key.Count);
+                        
+                        // Mannequin list crashes randomizer
+                        if (overworldObjectsTable.OverworldObjects.ElementAt(randListIndex).Value == true) return null;
+
+                        string newObject = overworldObjectsTable.OverworldObjects.ElementAt(randListIndex).Key[listRandomIndex];
 
                         if (overworldObjectsTable.OverworldObjects.ElementAt(i).Value == true) {
                             overworldObjectsTable.OverworldObjects.ElementAt(i).Key.Remove(newObject);

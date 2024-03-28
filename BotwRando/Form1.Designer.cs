@@ -72,6 +72,7 @@
             randomizeSpearsCheckbox = new CheckBox();
             randomizeLongSwordsCheckbox = new CheckBox();
             progressLabel = new Label();
+            chaosCheckbox = new CheckBox();
             tabControl1.SuspendLayout();
             mainTabPage.SuspendLayout();
             RandomizerToggleTabPage.SuspendLayout();
@@ -305,6 +306,7 @@
             // panel5
             // 
             panel5.BorderStyle = BorderStyle.FixedSingle;
+            panel5.Controls.Add(chaosCheckbox);
             panel5.Controls.Add(randomizeArmorShopsCheckbox);
             panel5.Controls.Add(randomizeRupeesCheckbox);
             panel5.Controls.Add(randomizeArrowsCheckbox);
@@ -317,7 +319,7 @@
             // randomizeArmorShopsCheckbox
             // 
             randomizeArmorShopsCheckbox.AutoSize = true;
-            randomizeArmorShopsCheckbox.Location = new Point(4, 57);
+            randomizeArmorShopsCheckbox.Location = new Point(4, 43);
             randomizeArmorShopsCheckbox.Margin = new Padding(4, 3, 4, 3);
             randomizeArmorShopsCheckbox.Name = "randomizeArmorShopsCheckbox";
             randomizeArmorShopsCheckbox.Size = new Size(157, 19);
@@ -339,7 +341,7 @@
             // randomizeArrowsCheckbox
             // 
             randomizeArrowsCheckbox.AutoSize = true;
-            randomizeArrowsCheckbox.Location = new Point(4, 30);
+            randomizeArrowsCheckbox.Location = new Point(4, 23);
             randomizeArrowsCheckbox.Margin = new Padding(4, 3, 4, 3);
             randomizeArrowsCheckbox.Name = "randomizeArrowsCheckbox";
             randomizeArrowsCheckbox.Size = new Size(125, 19);
@@ -580,6 +582,17 @@
             progressLabel.Text = "Lol So Random XD";
             progressLabel.TextAlign = ContentAlignment.MiddleLeft;
             // 
+            // chaosCheckbox
+            // 
+            chaosCheckbox.AutoSize = true;
+            chaosCheckbox.Location = new Point(4, 63);
+            chaosCheckbox.Margin = new Padding(4, 3, 4, 3);
+            chaosCheckbox.Name = "chaosCheckbox";
+            chaosCheckbox.Size = new Size(59, 19);
+            chaosCheckbox.TabIndex = 28;
+            chaosCheckbox.Text = "Chaos";
+            chaosCheckbox.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -658,5 +671,6 @@
         private CheckBox randomizeLongSwordsCheckbox;
         private CheckBox randomizeSpearsCheckbox;
         private Label progressLabel;
+        private CheckBox chaosCheckbox;
     }
 }
