@@ -7,10 +7,8 @@ using System.Linq;
 using Toolbox.Library;
 using Toolbox.Library.Security.Cryptography;
 
-namespace BotwRandoLib
-{
-    public class Randomizer
-    {
+namespace BotwRandoLib {
+    public class Randomizer {
         private static List<string> dungeonFiles = new List<string>();
         private static List<uint> eventsToDisable = new List<uint>();
         private static uint paragliderChest;
@@ -39,8 +37,7 @@ namespace BotwRandoLib
         /// <param name="progress">Has values from 0-8, 100 being exit due to error.</param>
         /// <param name="seed"></param>
         /// <exception cref="ArgumentException"></exception>
-        public static void RandomizeGame(string basePath, string updatePath, string dlcPath, string gfxPackPath, Dictionary<string, bool> randomizationSettings, out int progress, string seed = null)
-        {
+        public static void RandomizeGame(string basePath, string updatePath, string dlcPath, string gfxPackPath, Dictionary<string, bool> randomizationSettings, out int progress, string seed = null) {
             if (String.IsNullOrWhiteSpace(seed)) seed = GenerateSeed();
 
             random = new Random(unchecked((int)Crc32.Compute(seed)));
@@ -56,8 +53,7 @@ namespace BotwRandoLib
             overworldObjectsTable = new BotwObjects();
             chestObjectsTable = new BotwRandoTable(CHEST_COUNT);
 
-            if (!String.IsNullOrWhiteSpace(basePath) && !String.IsNullOrWhiteSpace(updatePath) && !String.IsNullOrWhiteSpace(dlcPath) && !String.IsNullOrWhiteSpace(gfxPackPath))
-            {
+            if (!String.IsNullOrWhiteSpace(basePath) && !String.IsNullOrWhiteSpace(updatePath) && !String.IsNullOrWhiteSpace(dlcPath) && !String.IsNullOrWhiteSpace(gfxPackPath)) {
                 // Check if directories are valid
                 if (!(LibHelpers.IsDirectoryValid(basePath) || LibHelpers.IsDirectoryValid(updatePath) || LibHelpers.IsDirectoryValid(dlcPath) || LibHelpers.IsDirectoryValid(gfxPackPath)))
                     throw new ArgumentException("One of the supplied Paths was not valid or doesn't exist!");
@@ -65,18 +61,15 @@ namespace BotwRandoLib
                 // Delete the graphic pack if one already exists, and re-create it
                 string gfxPackNewPath = Path.Combine(gfxPackPath, "BotW Randomizer " + seed);
 
-                try
-                {
-                    if (Directory.Exists(gfxPackNewPath))
-                    {
+                try {
+                    if (Directory.Exists(gfxPackNewPath)) {
                         Directory.Delete(gfxPackNewPath, true);
                     }
 
                     Directory.CreateDirectory(gfxPackNewPath);
                 }
                 // TODO: have randomize function return *something* so one can check if it executed successfully or not?
-                catch
-                {
+                catch {
                     progress = 100;
                     return;
                 }
@@ -107,8 +100,7 @@ namespace BotwRandoLib
 
                 progress++;
 
-                if (!LibHelpers.CopyMapFiles(dlcMainFieldPath, gfxPackMainFieldPath))
-                {
+                if (!LibHelpers.CopyMapFiles(dlcMainFieldPath, gfxPackMainFieldPath)) {
                     progress = 100;
                     return;
                 }
@@ -121,8 +113,7 @@ namespace BotwRandoLib
                 string dlcShrinesPath = Path.Combine(dlcPath, "0010", "Pack");
                 string gfxPackBaseShrinesPath = Path.Combine(gfxPackNewPath, "content", "Pack");
                 string gfxPackDlcShrinesPath = Path.Combine(gfxPackNewPath, "aoc", "0010", "Pack");
-                if (!LibHelpers.CopyShrineFiles(baseShrinesPath, dlcShrinesPath, gfxPackBaseShrinesPath, gfxPackDlcShrinesPath, ref dungeonFiles))
-                {
+                if (!LibHelpers.CopyShrineFiles(baseShrinesPath, dlcShrinesPath, gfxPackBaseShrinesPath, gfxPackDlcShrinesPath, ref dungeonFiles)) {
                     progress = 100;
                     return;
                 }
@@ -133,8 +124,7 @@ namespace BotwRandoLib
                 string[] mapFiles = Directory.GetFiles(gfxPackMainFieldPath, "*.smubin", SearchOption.AllDirectories);
                 // For every map file, open it, patch it's contents, add it to the RSTB list and close it
                 File.WriteAllText(spoilerLogPath, File.ReadAllText(spoilerLogPath) + "\n" + "\n" + "=== Overworld ===" + "\n");
-                foreach (string mapFile in mapFiles)
-                {
+                foreach (string mapFile in mapFiles) {
                     OpenMainFieldMapFile(mapFile, "MainField", randomizationSettings);
                 }
 
@@ -142,8 +132,7 @@ namespace BotwRandoLib
 
                 // For every dungeon pack file, open it, patch it's contents, add it to the RSTB list and close it
                 File.WriteAllText(spoilerLogPath, File.ReadAllText(spoilerLogPath) + "\n" + "\n" + "=== Shrines ===" + "\n");
-                foreach (string dungeonFile in dungeonFiles)
-                {
+                foreach (string dungeonFile in dungeonFiles) {
                     OpenDungeonPackFile(dungeonFile, "CDungeon", randomizationSettings);
                 }
 
@@ -180,8 +169,7 @@ namespace BotwRandoLib
                 LibHelpers.RstbFiles(gfxPackRstbFile);
 
                 progress++;
-            }
-            else if (String.IsNullOrWhiteSpace(basePath))
+            } else if (String.IsNullOrWhiteSpace(basePath))
                 throw new ArgumentException("basePath is null or empty!");
 
             else if (String.IsNullOrWhiteSpace(updatePath))
@@ -194,8 +182,7 @@ namespace BotwRandoLib
                 throw new ArgumentException("gfxPackPath is null or empty!");
         }
 
-        private static void OpenDungeonPackFile(string dungeonFile, string mapType, Dictionary<string, bool> randomizationSettings)
-        {
+        private static void OpenDungeonPackFile(string dungeonFile, string mapType, Dictionary<string, bool> randomizationSettings) {
             FileStream fs = File.OpenRead(dungeonFile);
             SarcData dungeonSarcData = SARC.UnpackRamN(fs);
             fs.Close();
@@ -212,13 +199,11 @@ namespace BotwRandoLib
             File.WriteAllBytes(dungeonFile, decompressedData.Item2);
         }
 
-        private static bool IsYaz0(byte[] fileData)
-        {
+        private static bool IsYaz0(byte[] fileData) {
             return fileData[0] == 0x59 && fileData[1] == 0x61 && fileData[2] == 0x7A && fileData[3] == 0x30;
         }
 
-        private static void RandomizeDungeon(ref SarcData dungeonSarcData, string dungeonPath, string staticDynamic, string dungeonName, string mapType, Dictionary<string, bool> randomizationSettings)
-        {
+        private static void RandomizeDungeon(ref SarcData dungeonSarcData, string dungeonPath, string staticDynamic, string dungeonName, string mapType, Dictionary<string, bool> randomizationSettings) {
             // Yaz0 decompress the .smubin file and open it as a Byaml
             byte[] dungeonStaticData = dungeonSarcData.Files[dungeonPath];
             MemoryStream ms = new MemoryStream(dungeonStaticData);
@@ -235,20 +220,16 @@ namespace BotwRandoLib
             //Prepare a new dictionary instance for each obj to remove any references
             List<dynamic> objectList = (List<dynamic>)byaml.RootNode["Objs"];
             // For every object in the map, randomize it!
-            for (int i = 0; i < objectList.Count; i++)
-            {
+            for (int i = 0; i < objectList.Count; i++) {
                 Dictionary<string, dynamic> actorObj = new Dictionary<string, dynamic>();
-                foreach (var item in (Dictionary<string, dynamic>)objectList[i])
-                {
+                foreach (var item in (Dictionary<string, dynamic>)objectList[i]) {
                     actorObj.Add(item.Key, item.Value);
                 }
 
                 //Prepare a new dictionary instance for each obj to remove any references
                 Dictionary<string, dynamic> paramDict = new Dictionary<string, dynamic>();
-                if (objectList[i].ContainsKey("!Parameters"))
-                {
-                    foreach (var item in (Dictionary<string, dynamic>)objectList[i]["!Parameters"])
-                    {
+                if (objectList[i].ContainsKey("!Parameters")) {
+                    foreach (var item in (Dictionary<string, dynamic>)objectList[i]["!Parameters"]) {
                         paramDict.Add(item.Key, item.Value);
                     }
                 }
@@ -275,8 +256,7 @@ namespace BotwRandoLib
             ms.Close();
         }
 
-        private static string[] RulesTextFile(string version, string seed)
-        {
+        private static string[] RulesTextFile(string version, string seed) {
             string botwRandomizerText = "BotW Randomizer [" + seed + "]";
             List<string> lines = new List<string>();
             lines.Add("[Definition]");
@@ -289,13 +269,11 @@ namespace BotwRandoLib
             return lines.ToArray();
         }
 
-        public static string GenerateSeed()
-        {
+        public static string GenerateSeed() {
             string seed = "";
             Random rng = new Random();
 
-            for (int i = 0; i < 15; i++)
-            {
+            for (int i = 0; i < 15; i++) {
                 int number = rng.Next(0, 62);
                 seed += ConvertToBase62(number).ToUpper();
             }
@@ -308,13 +286,11 @@ namespace BotwRandoLib
             return seed;
         }
 
-        static string ConvertToBase62(int number)
-        {
+        static string ConvertToBase62(int number) {
             const string b62Values = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
             string b62 = "";
 
-            do
-            {
+            do {
                 b62 += b62Values[number % 62];
                 number /= 62;
             } while (number != 0);
@@ -322,8 +298,7 @@ namespace BotwRandoLib
             return b62;
         }
 
-        private static void UpdateSaveData(string bootupFile)
-        {
+        private static void UpdateSaveData(string bootupFile) {
             FileStream fs = File.OpenRead(bootupFile);
             SarcData bootupSarcData = SARC.UnpackRamN(fs);
             fs.Close();
@@ -337,15 +312,12 @@ namespace BotwRandoLib
 
             List<string> fileNames = new List<string>();
 
-            foreach (KeyValuePair<string, byte[]> gameDataFile in gameDataSarcData.Files)
-            {
+            foreach (KeyValuePair<string, byte[]> gameDataFile in gameDataSarcData.Files) {
                 fileNames.Add(gameDataFile.Key);
             }
 
-            for (int i = 0; i < fileNames.Count; i++)
-            {
-                if (fileNames[i].StartsWith("/saveformat_"))
-                {
+            for (int i = 0; i < fileNames.Count; i++) {
+                if (fileNames[i].StartsWith("/saveformat_")) {
                     bool modified = false;
 
                     MemoryStream gdMs = new MemoryStream(gameDataSarcData.Files[fileNames[i]]);
@@ -354,10 +326,8 @@ namespace BotwRandoLib
 
                     dynamic botwObjects = gdByaml.RootNode["file_list"];
 
-                    for (int j = 0; j < botwObjects[1].Count; j++)
-                    {
-                        if (modifiedActors.ContainsKey(botwObjects[1][j]["DataName"]))
-                        {
+                    for (int j = 0; j < botwObjects[1].Count; j++) {
+                        if (modifiedActors.ContainsKey(botwObjects[1][j]["DataName"])) {
                             string newActorName = modifiedActors[botwObjects[1][j]["DataName"]];
 
                             gdByaml.RootNode["file_list"][1][j]["HashValue"] = unchecked((int)Crc32.Compute(newActorName));
@@ -385,8 +355,7 @@ namespace BotwRandoLib
             }
         }
 
-        private static void UpdateGameData(string bootupFile)
-        {
+        private static void UpdateGameData(string bootupFile) {
             FileStream fs = File.OpenRead(bootupFile);
             SarcData bootupSarcData = SARC.UnpackRamN(fs);
             fs.Close();
@@ -402,26 +371,21 @@ namespace BotwRandoLib
 
             List<string> fileNames = new List<string>();
 
-            foreach (KeyValuePair<string, byte[]> gameDataFile in gameDataSarcData.Files)
-            {
+            foreach (KeyValuePair<string, byte[]> gameDataFile in gameDataSarcData.Files) {
                 fileNames.Add(gameDataFile.Key);
             }
 
-            for (int i = 0; i < fileNames.Count; i++)
-            {
+            for (int i = 0; i < fileNames.Count; i++) {
                 bool modified = false;
 
                 MemoryStream gdMs = new MemoryStream(gameDataSarcData.Files[fileNames[i]]);
                 BymlFileData gdByaml = ByamlFile.LoadN(gdMs);
                 gdMs.Close();
 
-                if (gdByaml.RootNode.ContainsKey("bool_data"))
-                {
+                if (gdByaml.RootNode.ContainsKey("bool_data")) {
                     dynamic botwObjects = gdByaml.RootNode["bool_data"];
-                    for (int j = 0; j < botwObjects.Count; j++)
-                    {
-                        if (modifiedActors.ContainsKey(botwObjects[j]["DataName"]))
-                        {
+                    for (int j = 0; j < botwObjects.Count; j++) {
+                        if (modifiedActors.ContainsKey(botwObjects[j]["DataName"])) {
                             string newActorName = modifiedActors[botwObjects[j]["DataName"]];
 
                             gdByaml.RootNode["bool_data"][j]["HashValue"] = unchecked((int)Crc32.Compute(newActorName));
@@ -478,29 +442,24 @@ namespace BotwRandoLib
                             botwObjects[j]["DataName"].Equals("IsPlayed_Demo042_0") ||
                             botwObjects[j]["DataName"].Equals("IsPlayed_Demo042_1") ||
                             botwObjects[j]["DataName"].Equals("MapTower_DemoFirst")
-                            )
-                        {
+                            ) {
                             gdByaml.RootNode["bool_data"][j]["InitValue"] = unchecked(1);
                             modified = true;
                         }
                     }
                 }
 
-                if (gdByaml.RootNode.ContainsKey("s32_data"))
-                {
+                if (gdByaml.RootNode.ContainsKey("s32_data")) {
                     dynamic botwObjects = gdByaml.RootNode["s32_data"];
-                    for (int j = 0; j < botwObjects.Count; j++)
-                    {
-                        if (botwObjects[j]["DataName"].Equals("Location_MapTower07"))
-                        {
+                    for (int j = 0; j < botwObjects.Count; j++) {
+                        if (botwObjects[j]["DataName"].Equals("Location_MapTower07")) {
                             gdByaml.RootNode["s32_data"][j]["InitValue"] = unchecked(1);
                             modified = true;
                         }
                     }
                 }
 
-                if (modified)
-                {
+                if (modified) {
                     gameDataSarcData.Files[fileNames[i]] = ByamlFile.SaveN(gdByaml);
                 }
             }
@@ -519,22 +478,18 @@ namespace BotwRandoLib
             File.WriteAllBytes(bootupFile, newBootupFile);
         }
 
-        private static void OpenMainFieldMapFile(string mapFile, string mapType, Dictionary<string, bool> randomizationSettings)
-        {
+        private static void OpenMainFieldMapFile(string mapFile, string mapType, Dictionary<string, bool> randomizationSettings) {
             // Yaz0 decompress the .smubin file and open it as a Byaml
             byte[] dungeonStaticData = File.ReadAllBytes(mapFile);
             BymlFileData byaml;
             MemoryStream ms = new MemoryStream(dungeonStaticData);
             Yaz0 yaz = new Yaz0();
 
-            if (IsYaz0(dungeonStaticData))
-            {
+            if (IsYaz0(dungeonStaticData)) {
                 Stream s = yaz.Decompress(ms);
                 byaml = ByamlFile.LoadN(s);
                 s.Close();
-            }
-            else
-            {
+            } else {
                 byaml = ByamlFile.LoadN(ms);
             }
 
@@ -543,20 +498,16 @@ namespace BotwRandoLib
             //Prepare a new dictionary instance for each obj to remove any references
             List<dynamic> objectList = (List<dynamic>)byaml.RootNode["Objs"];
             // For every object in the map, randomize it!
-            for (int i = 0; i < objectList.Count; i++)
-            {
+            for (int i = 0; i < objectList.Count; i++) {
                 Dictionary<string, dynamic> actorObj = new Dictionary<string, dynamic>();
-                foreach (var item in (Dictionary<string, dynamic>)objectList[i])
-                {
+                foreach (var item in (Dictionary<string, dynamic>)objectList[i]) {
                     actorObj.Add(item.Key, item.Value);
                 }
 
                 //Prepare a new dictionary instance for each obj to remove any references
                 Dictionary<string, dynamic> paramDict = new Dictionary<string, dynamic>();
-                if (objectList[i].ContainsKey("!Parameters"))
-                {
-                    foreach (var item in (Dictionary<string, dynamic>)objectList[i]["!Parameters"])
-                    {
+                if (objectList[i].ContainsKey("!Parameters")) {
+                    foreach (var item in (Dictionary<string, dynamic>)objectList[i]["!Parameters"]) {
                         paramDict.Add(item.Key, item.Value);
                     }
                 }
@@ -585,107 +536,73 @@ namespace BotwRandoLib
             ms.Close();
         }
 
-        private static bool ShouldBeRandomized(string unitconfigname, Dictionary<string, bool> randomizationSettings)
-        {
-            if (randomizationSettings.ContainsKey("randomizeArmorCheckbox") && randomizationSettings["randomizeArmorCheckbox"] == true && unitconfigname.StartsWith("Armor"))
-                return true;
-            if (randomizationSettings.ContainsKey("randomizeSwordsCheckbox") && randomizationSettings["randomizeSwordsCheckbox"] == true && unitconfigname.StartsWith("Weapon_Sword"))
-                return true;
-            if (randomizationSettings.ContainsKey("randomizeLongSwordsCheckbox") && randomizationSettings["randomizeLongSwordsCheckbox"] == true && unitconfigname.StartsWith("Weapon_Lsword"))
-                return true;
-            if (randomizationSettings.ContainsKey("randomizeSpearsCheckbox") && randomizationSettings["randomizeSpearsCheckbox"] == true && unitconfigname.StartsWith("Weapon_Spear"))
-                return true;
-            if (randomizationSettings.ContainsKey("randomizeBowsCheckbox") && randomizationSettings["randomizeBowsCheckbox"] == true && unitconfigname.StartsWith("Weapon_Bow"))
-                return true;
-            if (randomizationSettings.ContainsKey("randomizeShieldsCheckbox") && randomizationSettings["randomizeShieldsCheckbox"] == true && unitconfigname.StartsWith("Weapon_Shield"))
-                return true;
-            if (randomizationSettings.ContainsKey("randomizeEnemiesCheckbox") && randomizationSettings["randomizeEnemiesCheckbox"] == true && unitconfigname.StartsWith("Enemy"))
-                return true;
-            if (randomizationSettings.ContainsKey("randomizeInsectsCheckbox") && randomizationSettings["randomizeInsectsCheckbox"] == true && unitconfigname.StartsWith("Animal_Insect"))
-                return true;
-            if (randomizationSettings.ContainsKey("randomizeFishesCheckbox") && randomizationSettings["randomizeFishesCheckbox"] == true && unitconfigname.StartsWith("Animal_Fish"))
-                return true;
-            if (randomizationSettings.ContainsKey("randomizePlantsCheckbox") && randomizationSettings["randomizePlantsCheckbox"] == true && unitconfigname.StartsWith("Item_Plant"))
-                return true;
-            if (randomizationSettings.ContainsKey("randomizeMushroomsCheckbox") && randomizationSettings["randomizeMushroomsCheckbox"] == true && unitconfigname.StartsWith("Item_Mushroom"))
-                return true;
-            if (randomizationSettings.ContainsKey("randomizeFruitsCheckbox") && randomizationSettings["randomizeFruitsCheckbox"] == true && unitconfigname.StartsWith("Item_Fruit"))
-                return true;
-            if (randomizationSettings.ContainsKey("randomizeAnimalsCheckbox") && randomizationSettings["randomizeAnimalsCheckbox"] == true && unitconfigname.StartsWith("Animal"))
-                return true;
-            if (randomizationSettings.ContainsKey("randomizeOresCheckbox") && randomizationSettings["randomizeOresCheckbox"] == true && unitconfigname.StartsWith("Item_Ore"))
-                return true;
-            if (randomizationSettings.ContainsKey("randomizeRupeesCheckbox") && randomizationSettings["randomizeRupeesCheckbox"] == true && unitconfigname.StartsWith("PutRupee"))
-                return true;
-            if (randomizationSettings.ContainsKey("randomizeArrowsCheckbox") && randomizationSettings["randomizeArrowsCheckbox"] == true && unitconfigname.Contains("Arrow"))
-                return true;
-            if (randomizationSettings.ContainsKey("randomizeArmorShopsCheckbox") && randomizationSettings["randomizeArmorShopsCheckbox"] == true && unitconfigname.StartsWith("Mannequin"))
-                return true;
+        private static bool ShouldBeRandomized(string unitconfigname, Dictionary<string, bool> randomizationSettings) {
+            if (randomizationSettings.ContainsKey("randomizeArmorCheckbox") && randomizationSettings["randomizeArmorCheckbox"] == true && unitconfigname.StartsWith("Armor")) return true;
+            if (randomizationSettings.ContainsKey("randomizeSwordsCheckbox") && randomizationSettings["randomizeSwordsCheckbox"] == true && unitconfigname.StartsWith("Weapon_Sword")) return true;
+            if (randomizationSettings.ContainsKey("randomizeLongSwordsCheckbox") && randomizationSettings["randomizeLongSwordsCheckbox"] == true && unitconfigname.StartsWith("Weapon_Lsword")) return true;
+            if (randomizationSettings.ContainsKey("randomizeSpearsCheckbox") && randomizationSettings["randomizeSpearsCheckbox"] == true && unitconfigname.StartsWith("Weapon_Spear")) return true;
+            if (randomizationSettings.ContainsKey("randomizeBowsCheckbox") && randomizationSettings["randomizeBowsCheckbox"] == true && unitconfigname.StartsWith("Weapon_Bow")) return true;
+            if (randomizationSettings.ContainsKey("randomizeShieldsCheckbox") && randomizationSettings["randomizeShieldsCheckbox"] == true && unitconfigname.StartsWith("Weapon_Shield")) return true;
+            if (randomizationSettings.ContainsKey("randomizeEnemiesCheckbox") && randomizationSettings["randomizeEnemiesCheckbox"] == true && unitconfigname.StartsWith("Enemy")) return true;
+            if (randomizationSettings.ContainsKey("randomizeInsectsCheckbox") && randomizationSettings["randomizeInsectsCheckbox"] == true && unitconfigname.StartsWith("Animal_Insect")) return true;
+            if (randomizationSettings.ContainsKey("randomizeFishesCheckbox") && randomizationSettings["randomizeFishesCheckbox"] == true && unitconfigname.StartsWith("Animal_Fish")) return true;
+            if (randomizationSettings.ContainsKey("randomizePlantsCheckbox") && randomizationSettings["randomizePlantsCheckbox"] == true && unitconfigname.StartsWith("Item_Plant")) return true;
+            if (randomizationSettings.ContainsKey("randomizeMushroomsCheckbox") && randomizationSettings["randomizeMushroomsCheckbox"] == true && unitconfigname.StartsWith("Item_Mushroom")) return true;
+            if (randomizationSettings.ContainsKey("randomizeFruitsCheckbox") && randomizationSettings["randomizeFruitsCheckbox"] == true && unitconfigname.StartsWith("Item_Fruit")) return true;
+            if (randomizationSettings.ContainsKey("randomizeAnimalsCheckbox") && randomizationSettings["randomizeAnimalsCheckbox"] == true && unitconfigname.StartsWith("Animal")) return true;
+            if (randomizationSettings.ContainsKey("randomizeOresCheckbox") && randomizationSettings["randomizeOresCheckbox"] == true && unitconfigname.StartsWith("Item_Ore")) return true;
+            if (randomizationSettings.ContainsKey("randomizeRupeesCheckbox") && randomizationSettings["randomizeRupeesCheckbox"] == true && unitconfigname.StartsWith("PutRupee")) return true;
+            if (randomizationSettings.ContainsKey("randomizeArrowsCheckbox") && randomizationSettings["randomizeArrowsCheckbox"] == true && unitconfigname.Contains("Arrow")) return true;
+            if (randomizationSettings.ContainsKey("randomizeArmorShopsCheckbox") && randomizationSettings["randomizeArmorShopsCheckbox"] == true && unitconfigname.StartsWith("Mannequin")) return true;
 
             return false;
         }
 
         private static int currentChestCount = 0;
 
-        private static void RandomizeMapObject(ref Dictionary<string, dynamic> actorParams, ref Dictionary<string, dynamic> actorObj, string mapType, Dictionary<string, bool> randomizationSettings)
-        {
+        private static void RandomizeMapObject(ref Dictionary<string, dynamic> actorParams, ref Dictionary<string, dynamic> actorObj, string mapType, Dictionary<string, bool> randomizationSettings) {
             string unitConfigName = actorObj["UnitConfigName"];
 
             // If the enemy is supposed to spawn in an arena, don't randomize it
-            if (actorParams.ContainsKey("IsNearCreate") && actorParams["IsNearCreate"] == true)
-            {
+            if (actorParams.ContainsKey("IsNearCreate") && actorParams["IsNearCreate"] == true) {
                 return;
             }
             // Ignore Master Mode objects
-            else if (actorParams.ContainsKey("IsHardModeActor") && actorParams["IsHardModeActor"] == true)
-            {
+            else if (actorParams.ContainsKey("IsHardModeActor") && actorParams["IsHardModeActor"] == true) {
                 return;
             }
             // Remove unwanted objects
-            else if (eventsToDisable.Contains(actorObj["HashId"]))
-            {
+            else if (eventsToDisable.Contains(actorObj["HashId"])) {
                 actorObj["UnitConfigName"] = "Dummy";
             }
             // Remove old man by FORCE!
-            else if (actorObj["UnitConfigName"].StartsWith("Npc_King"))
-            {
+            else if (actorObj["UnitConfigName"].StartsWith("Npc_King")) {
                 actorObj["UnitConfigName"] = "Dummy";
             }
             // If the map actor is a treasure chest, check if it should have a spirit orb inside, and place it if so
-            else if (unitConfigName.StartsWith("TBox_") && !unitConfigName.Contains("Gamble"))
-            {
+            else if (unitConfigName.StartsWith("TBox_") && !unitConfigName.Contains("Gamble")) {
                 currentChestCount++;
 
                 // Place Paraglider in Plateau
-                if (paragliderChest == actorObj["HashId"])
-                {
+                if (paragliderChest == actorObj["HashId"]) {
                     // Set the chest contents to the Paraglider
                     actorParams["DropActor"] = "PlayerStole2";
                     File.WriteAllText(spoilerLogPath, File.ReadAllText(spoilerLogPath) + "\n" + "Paraglider: " + actorObj["HashId"]);
-                }
-                else
-                {
+                } else {
                     // Only randomize actor if the player chose to
-                    if (ShouldBeRandomized(actorParams["DropActor"], randomizationSettings))
-                    {
+                    if (ShouldBeRandomized(actorParams["DropActor"], randomizationSettings)) {
                         RandomizeParameter("DropActor", ref actorParams, actorObj);
                     }
                 }
-            }
-            else if (unitConfigName.Equals("TwnObj_GanonGrudgeSolid_Generator_A_01"))
-            {
+            } else if (unitConfigName.Equals("TwnObj_GanonGrudgeSolid_Generator_A_01")) {
                 actorParams["ActorName"] = "Enemy_Bokoblin_Gold";
                 RandomizeParameter("ActorName", ref actorParams);
-            }
-            else
-            {
+            } else {
                 // Only randomize actor if the player chose to
-                if (ShouldBeRandomized(unitConfigName, randomizationSettings))
-                {
+                if (ShouldBeRandomized(unitConfigName, randomizationSettings)) {
                     // Randomize the unit name of a map actor
                     string newObject = GetRandomMapObject(unitConfigName);
-                    if (newObject != null)
-                    {
+                    if (newObject != null) {
                         ModifyActorName(ref actorObj, newObject, mapType);
                     }
                 }
@@ -699,54 +616,43 @@ namespace BotwRandoLib
             }
         }
 
-        private static void ModifyActorName(ref Dictionary<string, dynamic> actorObj, dynamic value, string mapType)
-        {
+        private static void ModifyActorName(ref Dictionary<string, dynamic> actorObj, dynamic value, string mapType) {
             long hashId = actorObj["HashId"];
 
             string originalActorName = mapType + "_" + actorObj["UnitConfigName"] + "_" + hashId;
             string modifiedActorName = mapType + "_" + value + "_" + hashId;
 
-            if (!modifiedActors.ContainsKey(originalActorName))
-            {
+            if (!modifiedActors.ContainsKey(originalActorName)) {
                 modifiedActors.Add(originalActorName, modifiedActorName);
             }
 
             actorObj["UnitConfigName"] = value;
         }
 
-        private static void RandomizeParameter(string paramName, ref Dictionary<string, dynamic> actorParams, Dictionary<string, dynamic> actorObj = null)
-        {
+        private static void RandomizeParameter(string paramName, ref Dictionary<string, dynamic> actorParams, Dictionary<string, dynamic> actorObj = null) {
             // If a parameter with a specific name is found
-            if (actorParams.ContainsKey(paramName))
-            {
+            if (actorParams.ContainsKey(paramName)) {
                 string paramValue = actorParams[paramName];
-                if (paramValue != "Default")
-                {
+                if (paramValue != "Default") {
                     string randomObj;
-                    if (paramName == "DropActor")
-                    {
+                    if (paramName == "DropActor") {
                         KeyValuePair<string, string> newObject = GetChestLootObject();
                         randomObj = newObject.Key;
-                        if (actorObj != null && !String.IsNullOrEmpty(newObject.Value))
-                        {
+                        if (actorObj != null && !String.IsNullOrEmpty(newObject.Value)) {
                             File.WriteAllText(spoilerLogPath, File.ReadAllText(spoilerLogPath) + "\n" + $"{newObject.Value}: " + actorObj["HashId"]);
                         }
-                    }
-                    else
-                    {
+                    } else {
                         randomObj = GetRandomMapObject(paramValue);
                     }
 
-                    if (randomObj != null)
-                    {
+                    if (randomObj != null) {
                         actorParams[paramName] = randomObj;
                     }
                 }
             }
         }
 
-        private static KeyValuePair<string, string> GetChestLootObject()
-        {
+        private static KeyValuePair<string, string> GetChestLootObject() {
             // Get a random value from a list if the object is found within said list
             chestObjectsTable.ChestItems = chestObjectsTable.ChestItems.OrderBy(x => random.Next()).ToList();
             KeyValuePair<string, string> objectInList = chestObjectsTable.ChestItems[0];
@@ -754,20 +660,15 @@ namespace BotwRandoLib
             return objectInList;
         }
 
-        private static string GetRandomMapObject(string objectName)
-        {
+        private static string GetRandomMapObject(string objectName) {
             // Get a random value from a list if the object is found within said list
-            for (int i = 0; i < overworldObjectsTable.OverworldObjects.Count; i++)
-            {
-                for (int j = 0; j < overworldObjectsTable.OverworldObjects.ElementAt(i).Key.Count; j++)
-                {
-                    if (overworldObjectsTable.OverworldObjects.ElementAt(i).Key[j] == objectName)
-                    {
+            for (int i = 0; i < overworldObjectsTable.OverworldObjects.Count; i++) {
+                for (int j = 0; j < overworldObjectsTable.OverworldObjects.ElementAt(i).Key.Count; j++) {
+                    if (overworldObjectsTable.OverworldObjects.ElementAt(i).Key[j] == objectName) {
                         int listRandomIndex = random.Next(overworldObjectsTable.OverworldObjects.ElementAt(i).Key.Count);
                         string newObject = overworldObjectsTable.OverworldObjects.ElementAt(i).Key[listRandomIndex];
 
-                        if (overworldObjectsTable.OverworldObjects.ElementAt(i).Value == true)
-                        {
+                        if (overworldObjectsTable.OverworldObjects.ElementAt(i).Value == true) {
                             overworldObjectsTable.OverworldObjects.ElementAt(i).Key.Remove(newObject);
                         }
 
