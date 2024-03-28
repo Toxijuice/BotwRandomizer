@@ -71,6 +71,7 @@
             randomizeSwordsCheckbox = new CheckBox();
             randomizeSpearsCheckbox = new CheckBox();
             randomizeLongSwordsCheckbox = new CheckBox();
+            progressLabel = new Label();
             tabControl1.SuspendLayout();
             mainTabPage.SuspendLayout();
             RandomizerToggleTabPage.SuspendLayout();
@@ -568,12 +569,24 @@
             randomizeLongSwordsCheckbox.Text = "Randomize Long Swords";
             randomizeLongSwordsCheckbox.UseVisualStyleBackColor = true;
             // 
+            // progressLabel
+            // 
+            progressLabel.Anchor = AnchorStyles.Left;
+            progressLabel.AutoSize = true;
+            progressLabel.Location = new Point(10, 318);
+            progressLabel.Name = "progressLabel";
+            progressLabel.Size = new Size(105, 15);
+            progressLabel.TabIndex = 18;
+            progressLabel.Text = "Lol So Random XD";
+            progressLabel.TextAlign = ContentAlignment.MiddleLeft;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(706, 312);
+            ClientSize = new Size(706, 341);
+            Controls.Add(progressLabel);
             Controls.Add(tabControl1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
@@ -596,6 +609,7 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -643,5 +657,6 @@
         private CheckBox randomizeBowsCheckbox;
         private CheckBox randomizeLongSwordsCheckbox;
         private CheckBox randomizeSpearsCheckbox;
+        private Label progressLabel;
     }
 }

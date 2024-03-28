@@ -42,6 +42,7 @@ namespace BotwRando
             while (progress < maxProgress)
             {
                 progressBar1.Value = progress;
+                progressLabel.Text = string.Format("Progress: {0}", progress);
                 Application.DoEvents();
             }
 
@@ -196,6 +197,8 @@ namespace BotwRando
             randomizeButton.Enabled = AreAllBrowseFieldsFilledIn();
 
             seedTextBox.Text = Randomizer.GenerateSeed();
+
+            progressLabel.Text = "";
 
             // String Options
             baseButton.Click += (sender, e) => BrowseButtonClick(baseTextBox, "Open the \"content\" folder that contains the base BotW game", ref settingsFile.StringSettings.BasePath);
