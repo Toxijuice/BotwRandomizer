@@ -1,4 +1,4 @@
-﻿using ByamlExt.Byaml;
+using ByamlExt.Byaml;
 using SARCExt;
 using System;
 using System.Collections.Generic;
@@ -704,7 +704,7 @@ namespace BotwRandoLib {
                 for (int j = 0; j < overworldObjectsTable.OverworldObjects.ElementAt(i).Key.Count; j++) {
                     if (overworldObjectsTable.OverworldObjects.ElementAt(i).Key[j] == objectName) {
 
-                        int randListIndex = random.Next(overworldObjectsTable.OverworldObjects.Count-1);
+                        int randListIndex = random.Next(overworldObjectsTable.OverworldObjects.Count);
                         int listRandomIndex = random.Next(overworldObjectsTable.OverworldObjects.ElementAt(randListIndex).Key.Count);
                         
                         // Mannequin list crashes randomizer
