@@ -1,4 +1,4 @@
-using ByamlExt.Byaml;
+﻿using ByamlExt.Byaml;
 using SARCExt;
 using System;
 using System.Collections.Generic;
@@ -16,12 +16,14 @@ namespace BotwRandoLib {
 
         private static BotwObjects overworldObjectsTable;
         private static BotwRandoTable chestObjectsTable;
+        private static BotwObjectMap overworldObjectMap;
 
         private static Dictionary<string, string> modifiedActors = new Dictionary<string, string>();
 
         private static string spoilerLogPath = "";
 
         private static bool chaosmode = false;
+        private static bool swapmode = true;
 
         private const int SPIRIT_ORB_COUNT = 240;
         private const int CHEST_COUNT = 1398;
@@ -56,6 +58,7 @@ namespace BotwRandoLib {
 
             overworldObjectsTable = new BotwObjects();
             chestObjectsTable = new BotwRandoTable(CHEST_COUNT);
+            overworldObjectMap = new BotwObjectMap(random, overworldObjectsTable);
 
             progress++; // 1
 
@@ -618,8 +621,8 @@ namespace BotwRandoLib {
                 // Only randomize actor if the player chose to
                 if (ShouldBeRandomized(unitConfigName, randomizationSettings)) {
                     // Randomize the unit name of a map actor
-                    Console.WriteLine(string.Format("[{0}] {1} - {2}",chaosmode, mapType, unitConfigName));
-                    string newObject = chaosmode ? GetAnyRandomMapObject(unitConfigName) : GetRandomMapObject(unitConfigName);
+                    Console.WriteLine(string.Format("[{0}] {1} - {2}", chaosmode, mapType, unitConfigName));
+                    string newObject = chaosmode ? GetAnyRandomMapObject(unitConfigName) : swapmode ? GetRandomMapObjectSwap(unitConfigName) : GetRandomMapObject(unitConfigName);
                     if (newObject != null) {
                         ModifyActorName(ref actorObj, newObject, mapType);
                     }
@@ -696,6 +699,10 @@ namespace BotwRandoLib {
             }
 
             return null;
+        }
+
+        private static string GetRandomMapObjectSwap(string objectName) {
+            return overworldObjectMap.GetItemFromMap(objectName);
         }
 
         private static string GetAnyRandomMapObject(string objectName) {

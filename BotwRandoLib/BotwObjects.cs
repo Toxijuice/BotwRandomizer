@@ -6,53 +6,90 @@ namespace BotwRandoLib
     internal class BotwObjects
     {
         public Dictionary<List<string>, bool> OverworldObjects;
+        public List<string> swordList;
+        public List<string> lSwordList;
+        public List<string> spearList;
+        public List<string> shieldList;
+        public List<string> bowList;
+        public List<string> enemyList;
+        public List<string> keeseList;
+        public List<string> keeseAllDayList;
+        public List<string> chuchulist;
+        public List<string> littleGolemsList;
+        public List<string> subBossList;
+        public List<string> lynelList;
+        public List<string> enemyGuardList;
+        public List<string> enemyGuardAmbushList;
+        public List<string> enemyTreehouseGuardList;
+        public List<string> singleArrowList;
+        public List<string> wizzrobeList;
+        public List<string> sandwormList;
+        public List<string> staticGuardianList;
+        public List<string> movingGuardianList;
+        public List<string> miniGuardianList;
+        public List<string> octorokList;
+        public List<string> materialList;
+        public List<string> meatList;
+        public List<string> mannequinList;
+        public List<string> mushroomList;
+        public List<string> insectList;
+        public List<string> frogList;
+        public List<string> plantList;
+        public List<string> fishList;
+        public List<string> AnimalList;
+        public List<string> fruitList;
+        public List<string> oreList;
+        public List<string> rupeeList;
+        public List<string> arrowBundle1List;
+        public List<string> arrowBundle2List;
+        public List<string> mineralList;
 
         public BotwObjects()
         {
             OverworldObjects = GenerateOverworldObjectList();
         }
 
-        private static Dictionary<List<string>, bool> GenerateOverworldObjectList()
+        private Dictionary<List<string>, bool> GenerateOverworldObjectList()
         {
             Dictionary<List<string>, bool> objectList = new Dictionary<List<string>, bool>();
 
-            List<string> swordList = GenerateSwordList();
-            List<string> lSwordList = GenerateLSwordList();
-            List<string> spearList = GenerateSpearList();
-            List<string> shieldList = GenerateShieldList();
-            List<string> bowList = GenerateBowList();
-            List<string> enemyList = GenerateEnemyList();
-            List<string> keeseList = GenerateKeeseList();
-            List<string> keeseAllDayList = GenerateKeeseAllDayList();
-            List<string> chuchulist = GenerateChuchuList();
-            List<string> littleGolemsList = GenerateLittleGolemList();
-            List<string> subBossList = GenerateSubBossList();
-            List<string> lynelList = GenerateLynelList();
-            List<string> enemyGuardList = GenerateEnemyGuardList();
-            List<string> enemyGuardAmbushList = GenerateEnemyGuardAmbushList();
-            List<string> enemyTreehouseGuardList = GenerateEnemyTreeHouseGuardList();
-            List<string> singleArrowList = GenerateSingleArrowList();
-            List<string> wizzrobeList = GenerateWizzrobeList();
-            List<string> sandwormList = GenerateSandwormList();
-            List<string> staticGuardianList = GenerateStaticGuardianList();
-            List<string> movingGuardianList = GenerateMovingGuardianList();
-            List<string> miniGuardianList = GenerateMiniGuardianList();
-            List<string> octorokList = GenerateOctorokList();
-            List<string> materialList = GenerateMaterialList();
-            List<string> meatList = GenerateMeatList();
-            List<string> mannequinList = GenerateMannequinList();
-            List<string> mushroomList = GenerateMushroomList();
-            List<string> insectList = GenerateInsectList();
-            List<string> frogList = GenerateFrogList();     // https://pastebin.com/raw/NevkzWMF
-            List<string> plantList = GeneratePlantList();
-            List<string> fishList = GenerateFishList();
-            List<string> AnimalList = GenerateAnimalList();
-            List<string> fruitList = GenerateFruitList();
-            List<string> oreList = GenerateOreList();
-            List<string> rupeeList = GenerateRupeeList();
-            List<string> arrowBundle1List = GenerateArrowBundle1List();
-            List<string> arrowBundle2List = GenerateArrowBundle2List();
-            List<string> mineralList = GenerateMineralList();
+            swordList = GenerateSwordList();
+            lSwordList = GenerateLSwordList();
+            spearList = GenerateSpearList();
+            shieldList = GenerateShieldList();
+            bowList = GenerateBowList();
+            enemyList = GenerateEnemyList();
+            keeseList = GenerateKeeseList();
+            keeseAllDayList = GenerateKeeseAllDayList();
+            chuchulist = GenerateChuchuList();
+            littleGolemsList = GenerateLittleGolemList();
+            subBossList = GenerateSubBossList();
+            lynelList = GenerateLynelList();
+            enemyGuardList = GenerateEnemyGuardList();
+            enemyGuardAmbushList = GenerateEnemyGuardAmbushList();
+            enemyTreehouseGuardList = GenerateEnemyTreeHouseGuardList();
+            singleArrowList = GenerateSingleArrowList();
+            wizzrobeList = GenerateWizzrobeList();
+            sandwormList = GenerateSandwormList();
+            staticGuardianList = GenerateStaticGuardianList();
+            movingGuardianList = GenerateMovingGuardianList();
+            miniGuardianList = GenerateMiniGuardianList();
+            octorokList = GenerateOctorokList();
+            materialList = GenerateMaterialList();
+            meatList = GenerateMeatList();
+            mannequinList = GenerateMannequinList();
+            mushroomList = GenerateMushroomList();
+            insectList = GenerateInsectList();
+            frogList = GenerateFrogList();     // https://pastebin.com/raw/NevkzWMF
+            plantList = GeneratePlantList();
+            fishList = GenerateFishList();
+            AnimalList = GenerateAnimalList();
+            fruitList = GenerateFruitList();
+            oreList = GenerateOreList();
+            rupeeList = GenerateRupeeList();
+            arrowBundle1List = GenerateArrowBundle1List();
+            arrowBundle2List = GenerateArrowBundle2List();
+            mineralList = GenerateMineralList();
 
             objectList.Add(swordList, false);
             objectList.Add(lSwordList, false);
