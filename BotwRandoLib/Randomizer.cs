@@ -277,11 +277,12 @@ namespace BotwRandoLib
 
         private static string[] RulesTextFile(string version, string seed)
         {
+            string botwRandomizerText = "BotW Randomizer [" + seed + "]";
             List<string> lines = new List<string>();
             lines.Add("[Definition]");
             lines.Add("titleIds = 00050000101C9300,00050000101C9400,00050000101C9500");
-            lines.Add("name = BotW Randomizer [" + seed + "]");
-            lines.Add("path = \"The Legend of Zelda: Breath of the Wild/BotW Randomizer\"");
+            lines.Add("name = " + botwRandomizerText);
+            lines.Add("path = \"The Legend of Zelda: Breath of the Wild/Randomizer/" + botwRandomizerText + "\"");
             lines.Add($"description = Randomizer Version {version}|You need to enable this to play the Randomizer!");
             lines.Add("version = 4");
 
