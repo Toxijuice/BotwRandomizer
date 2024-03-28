@@ -53,10 +53,15 @@ namespace BotwRandoLib {
             overworldObjectsTable = new BotwObjects();
             chestObjectsTable = new BotwRandoTable(CHEST_COUNT);
 
+            progress++; // 1
+
             if (!String.IsNullOrWhiteSpace(basePath) && !String.IsNullOrWhiteSpace(updatePath) && !String.IsNullOrWhiteSpace(dlcPath) && !String.IsNullOrWhiteSpace(gfxPackPath)) {
+                
                 // Check if directories are valid
                 if (!(LibHelpers.IsDirectoryValid(basePath) || LibHelpers.IsDirectoryValid(updatePath) || LibHelpers.IsDirectoryValid(dlcPath) || LibHelpers.IsDirectoryValid(gfxPackPath)))
                     throw new ArgumentException("One of the supplied Paths was not valid or doesn't exist!");
+
+                progress++; // 2
 
                 // Delete the graphic pack if one already exists, and re-create it
                 string gfxPackNewPath = Path.Combine(gfxPackPath, "BotW Randomizer " + seed);
@@ -74,11 +79,17 @@ namespace BotwRandoLib {
                     return;
                 }
 
+                progress++; // 3
+
                 spoilerLogPath = Path.Combine(gfxPackNewPath, "spoiler-log.txt");
                 File.WriteAllText(spoilerLogPath, "Seed: " + seed + "\n");
 
+                progress++; // 4
+
                 string gfxPackRulesFile = Path.Combine(gfxPackNewPath, "rules.txt");
                 File.WriteAllLines(gfxPackRulesFile, RulesTextFile(VERSION, seed));
+
+                progress++; // 5
 
                 // Useful path variables
                 string dlcMainFieldPath = Path.Combine(dlcPath, "0010", "Map", "MainField");
@@ -86,11 +97,15 @@ namespace BotwRandoLib {
                 string updateRstbFile = Path.Combine(updatePath, "System", "Resource", "ResourceSizeTable.product.srsizetable");
                 string gfxPackRstbFile = Path.Combine(gfxPackNewPath, "content", "System", "Resource", "ResourceSizeTable.product.srsizetable");
 
+                progress++; // 6
+
                 // Create a corrupted "AocMainField.pack" file so the game uses the map files from the "MainField" folder instead
                 string gfxPackCorruptedFile = Path.Combine(gfxPackNewPath, "aoc", "0010", "Pack", "AocMainField.pack");
                 // TODO: this can crash
                 Directory.CreateDirectory(Path.GetDirectoryName(gfxPackCorruptedFile));
                 File.WriteAllText(gfxPackCorruptedFile, String.Empty);
+
+                progress++; // 7
 
                 // Copy the necessary files over from the game to the graphic pack
                 LibHelpers.CopyRstbFile(updateRstbFile, gfxPackRstbFile);
@@ -98,14 +113,12 @@ namespace BotwRandoLib {
                 string versionFile = Path.Combine(gfxPackNewPath, "content", "System", "Version.txt");
                 File.WriteAllText(versionFile, seed);
 
-                progress++;
-
                 if (!LibHelpers.CopyMapFiles(dlcMainFieldPath, gfxPackMainFieldPath)) {
                     progress = 100;
                     return;
                 }
 
-                progress++;
+                progress++; // 8
 
                 // Copy all Base game and Dlc shrine pack files into the graphic pack
 
@@ -118,7 +131,7 @@ namespace BotwRandoLib {
                     return;
                 }
 
-                progress++;
+                progress++; // 9
 
                 // Reset the progress bar and set it's maximum size to the amount of map files
                 string[] mapFiles = Directory.GetFiles(gfxPackMainFieldPath, "*.smubin", SearchOption.AllDirectories);
@@ -128,7 +141,7 @@ namespace BotwRandoLib {
                     OpenMainFieldMapFile(mapFile, "MainField", randomizationSettings);
                 }
 
-                progress++;
+                progress++; // 10
 
                 // For every dungeon pack file, open it, patch it's contents, add it to the RSTB list and close it
                 File.WriteAllText(spoilerLogPath, File.ReadAllText(spoilerLogPath) + "\n" + "\n" + "=== Shrines ===" + "\n");
@@ -136,7 +149,7 @@ namespace BotwRandoLib {
                     OpenDungeonPackFile(dungeonFile, "CDungeon", randomizationSettings);
                 }
 
-                progress++;
+                progress++; // 11
 
                 string updateBootupPath = Path.Combine(updatePath, "Pack", "Bootup.pack");
                 string gfxPackBootupPath = Path.Combine(gfxPackNewPath, "content", "Pack", "Bootup.pack");
@@ -146,7 +159,7 @@ namespace BotwRandoLib {
                 UpdateGameData(gfxPackBootupPath);
                 UpdateSaveData(gfxPackBootupPath);
 
-                progress++;
+                progress++; // 12
 
                 //string titleBgUpdatePath = Path.Combine(updatePath, "Pack", "TitleBG.pack");
                 //string titleBgGfxPackPath = Path.Combine(gfxPackNewPath, "content", "Pack", "TitleBG.pack");
@@ -163,12 +176,12 @@ namespace BotwRandoLib {
                 LibHelpers.CopyAndInjectEventFile(Properties.Resources.HyruleCastle, "HyruleCastle", updateEventsPath, gfxPackEventsPath);
                 //LibHelpers.CopyAndInjectEventFile(Properties.Resources.Demo002_0, "Demo002_0", titleBgUpdatePath, titleBgGfxPackPath, true);
 
-                progress++;
+                progress++; // 13
 
                 // Change the size of all modified files in the RSTB of the graphic pack
                 LibHelpers.RstbFiles(gfxPackRstbFile);
 
-                progress++;
+                progress++; // 14
             } else if (String.IsNullOrWhiteSpace(basePath))
                 throw new ArgumentException("basePath is null or empty!");
 

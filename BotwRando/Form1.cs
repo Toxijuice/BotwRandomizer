@@ -33,7 +33,8 @@ namespace BotwRando
 
             // Run Method on different thread to not block UI thread
             int progress = 0;
-            int maxProgress = 8;
+            int maxProgress = 14;
+            int lastProgress = -1;
 
             Task.Run(() => Randomizer.RandomizeGame(basePath, updatePath, dlcPath, gfxPackPath, randoOptions, out progress, seedTextBox.Text));
 
@@ -42,18 +43,40 @@ namespace BotwRando
             while (progress < maxProgress)
             {
                 progressBar1.Value = progress;
-                progressLabel.Text = string.Format("Progress: {0}", progress);
+
+                if (progress != lastProgress) {
+                    switch(progress){
+                        case  0: progressLabel.Text = progress.ToString() + ": Initializing"; break;
+                        case  1: progressLabel.Text = progress.ToString() + ": Checking for valid paths"; break;
+                        case  2: progressLabel.Text = progress.ToString() + ": Removing old matching packs"; break;
+                        case  3: progressLabel.Text = progress.ToString() + ": Creating spoiler log"; break;
+                        case  4: progressLabel.Text = progress.ToString() + ": Creating rules.txt"; break;
+                        case  5: progressLabel.Text = progress.ToString() + ": Setting path variables"; break;
+                        case  6: progressLabel.Text = progress.ToString() + ": Corrupting data for fun"; break;
+                        case  7: progressLabel.Text = progress.ToString() + ": Copying game files to graphic pack"; break;
+                        case  8: progressLabel.Text = progress.ToString() + ": Copying shrine files to graphic pack"; break;
+                        case  9: progressLabel.Text = progress.ToString() + ": Patching overworld files"; break;
+                        case 10: progressLabel.Text = progress.ToString() + ": Patching dungeon files"; break;
+                        case 11: progressLabel.Text = progress.ToString() + ": Updating game data"; break;
+                        case 12: progressLabel.Text = progress.ToString() + ": Updating events"; break;
+                        case 13: progressLabel.Text = progress.ToString() + ": Changing size of modified files"; break;
+                    }
+                    lastProgress = progress;
+                }
+
                 Application.DoEvents();
             }
 
             if (progress == maxProgress)
             {
                 progressBar1.Value = progress;
-                MessageBox.Show("Don't forget to restart Cemu and enable the graphic pack before playing!", "Randomization process successful!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                progressLabel.Text = "Finished! Restart Cemu and enable the graphic pack before playing!";
+                // MessageBox.Show("Don't forget to restart Cemu and enable the graphic pack before playing!", "Randomization process successful!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
             {
                 MessageBox.Show("An error has occured while randomizing the game!");
+                progressLabel.Text = "Something went wrong around step " + lastProgress.ToString();
             }
 
             // Toggle everything back on again
