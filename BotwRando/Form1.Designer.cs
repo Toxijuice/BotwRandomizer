@@ -26,582 +26,576 @@
         ///  Required method for Designer support - do not modify
         ///  the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent()
-        {
+        private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.baseLabel = new System.Windows.Forms.Label();
-            this.baseTextBox = new System.Windows.Forms.TextBox();
-            this.baseButton = new System.Windows.Forms.Button();
-            this.updateButton = new System.Windows.Forms.Button();
-            this.updateTextBox = new System.Windows.Forms.TextBox();
-            this.updateLabel = new System.Windows.Forms.Label();
-            this.dlcButton = new System.Windows.Forms.Button();
-            this.dlcTextBox = new System.Windows.Forms.TextBox();
-            this.dlcLabel = new System.Windows.Forms.Label();
-            this.gfxPackButton = new System.Windows.Forms.Button();
-            this.gfxPackTextBox = new System.Windows.Forms.TextBox();
-            this.gfxPackLabel = new System.Windows.Forms.Label();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.randomizeButton = new System.Windows.Forms.Button();
-            this.seedTextBox = new System.Windows.Forms.TextBox();
-            this.seedLabel = new System.Windows.Forms.Label();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.mainTabPage = new System.Windows.Forms.TabPage();
-            this.RandomizerToggleTabPage = new System.Windows.Forms.TabPage();
-            this.miscGroupBox = new System.Windows.Forms.GroupBox();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.randomizeArmorShopsCheckbox = new System.Windows.Forms.CheckBox();
-            this.randomizeRupeesCheckbox = new System.Windows.Forms.CheckBox();
-            this.randomizeArrowsCheckbox = new System.Windows.Forms.CheckBox();
-            this.overworldEntitiesGroupBox = new System.Windows.Forms.GroupBox();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.randomizeOresCheckbox = new System.Windows.Forms.CheckBox();
-            this.randomizeSubBossesCheckbox = new System.Windows.Forms.CheckBox();
-            this.randomizeInsectsCheckbox = new System.Windows.Forms.CheckBox();
-            this.randomizeFishesCheckbox = new System.Windows.Forms.CheckBox();
-            this.randomizeEnemiesCheckbox = new System.Windows.Forms.CheckBox();
-            this.randomizePlantsCheckbox = new System.Windows.Forms.CheckBox();
-            this.randomizeFruitsCheckbox = new System.Windows.Forms.CheckBox();
-            this.randomizeAnimalsCheckbox = new System.Windows.Forms.CheckBox();
-            this.randomizeMushroomsCheckbox = new System.Windows.Forms.CheckBox();
-            this.EquipmentGroupBox = new System.Windows.Forms.GroupBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.randomizeShieldsCheckbox = new System.Windows.Forms.CheckBox();
-            this.randomizeArmorCheckbox = new System.Windows.Forms.CheckBox();
-            this.randomizeBowsCheckbox = new System.Windows.Forms.CheckBox();
-            this.randomizeSwordsCheckbox = new System.Windows.Forms.CheckBox();
-            this.randomizeSpearsCheckbox = new System.Windows.Forms.CheckBox();
-            this.randomizeLongSwordsCheckbox = new System.Windows.Forms.CheckBox();
-            this.tabControl1.SuspendLayout();
-            this.mainTabPage.SuspendLayout();
-            this.RandomizerToggleTabPage.SuspendLayout();
-            this.miscGroupBox.SuspendLayout();
-            this.panel5.SuspendLayout();
-            this.overworldEntitiesGroupBox.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.EquipmentGroupBox.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.SuspendLayout();
+            baseLabel = new Label();
+            baseTextBox = new TextBox();
+            baseButton = new Button();
+            updateButton = new Button();
+            updateTextBox = new TextBox();
+            updateLabel = new Label();
+            dlcButton = new Button();
+            dlcTextBox = new TextBox();
+            dlcLabel = new Label();
+            gfxPackButton = new Button();
+            gfxPackTextBox = new TextBox();
+            gfxPackLabel = new Label();
+            progressBar1 = new ProgressBar();
+            randomizeButton = new Button();
+            seedTextBox = new TextBox();
+            seedLabel = new Label();
+            tabControl1 = new TabControl();
+            mainTabPage = new TabPage();
+            RandomizerToggleTabPage = new TabPage();
+            miscGroupBox = new GroupBox();
+            panel5 = new Panel();
+            randomizeArmorShopsCheckbox = new CheckBox();
+            randomizeRupeesCheckbox = new CheckBox();
+            randomizeArrowsCheckbox = new CheckBox();
+            overworldEntitiesGroupBox = new GroupBox();
+            panel3 = new Panel();
+            randomizeOresCheckbox = new CheckBox();
+            randomizeSubBossesCheckbox = new CheckBox();
+            randomizeInsectsCheckbox = new CheckBox();
+            randomizeFishesCheckbox = new CheckBox();
+            randomizeEnemiesCheckbox = new CheckBox();
+            randomizePlantsCheckbox = new CheckBox();
+            randomizeFruitsCheckbox = new CheckBox();
+            randomizeAnimalsCheckbox = new CheckBox();
+            randomizeMushroomsCheckbox = new CheckBox();
+            EquipmentGroupBox = new GroupBox();
+            panel1 = new Panel();
+            randomizeShieldsCheckbox = new CheckBox();
+            randomizeArmorCheckbox = new CheckBox();
+            randomizeBowsCheckbox = new CheckBox();
+            randomizeSwordsCheckbox = new CheckBox();
+            randomizeSpearsCheckbox = new CheckBox();
+            randomizeLongSwordsCheckbox = new CheckBox();
+            tabControl1.SuspendLayout();
+            mainTabPage.SuspendLayout();
+            RandomizerToggleTabPage.SuspendLayout();
+            miscGroupBox.SuspendLayout();
+            panel5.SuspendLayout();
+            overworldEntitiesGroupBox.SuspendLayout();
+            panel3.SuspendLayout();
+            EquipmentGroupBox.SuspendLayout();
+            panel1.SuspendLayout();
+            SuspendLayout();
             // 
             // baseLabel
             // 
-            this.baseLabel.AutoSize = true;
-            this.baseLabel.ForeColor = System.Drawing.Color.Black;
-            this.baseLabel.Location = new System.Drawing.Point(6, 13);
-            this.baseLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.baseLabel.Name = "baseLabel";
-            this.baseLabel.Size = new System.Drawing.Size(151, 15);
-            this.baseLabel.TabIndex = 0;
-            this.baseLabel.Text = "BotW Base Content Folder :";
+            baseLabel.AutoSize = true;
+            baseLabel.ForeColor = Color.Black;
+            baseLabel.Location = new Point(6, 13);
+            baseLabel.Margin = new Padding(4, 0, 4, 0);
+            baseLabel.Name = "baseLabel";
+            baseLabel.Size = new Size(151, 15);
+            baseLabel.TabIndex = 0;
+            baseLabel.Text = "BotW Base Content Folder :";
             // 
             // baseTextBox
             // 
-            this.baseTextBox.Location = new System.Drawing.Point(188, 10);
-            this.baseTextBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.baseTextBox.Name = "baseTextBox";
-            this.baseTextBox.ReadOnly = true;
-            this.baseTextBox.Size = new System.Drawing.Size(349, 23);
-            this.baseTextBox.TabIndex = 1;
+            baseTextBox.Location = new Point(188, 10);
+            baseTextBox.Margin = new Padding(4, 3, 4, 3);
+            baseTextBox.Name = "baseTextBox";
+            baseTextBox.Size = new Size(349, 23);
+            baseTextBox.TabIndex = 1;
             // 
             // baseButton
             // 
-            this.baseButton.Location = new System.Drawing.Point(544, 10);
-            this.baseButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.baseButton.Name = "baseButton";
-            this.baseButton.Size = new System.Drawing.Size(150, 23);
-            this.baseButton.TabIndex = 2;
-            this.baseButton.Text = "Browse...";
-            this.baseButton.UseVisualStyleBackColor = true;
+            baseButton.Location = new Point(544, 10);
+            baseButton.Margin = new Padding(4, 3, 4, 3);
+            baseButton.Name = "baseButton";
+            baseButton.Size = new Size(150, 23);
+            baseButton.TabIndex = 2;
+            baseButton.Text = "Browse...";
+            baseButton.UseVisualStyleBackColor = true;
             // 
             // updateButton
             // 
-            this.updateButton.Location = new System.Drawing.Point(544, 39);
-            this.updateButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.updateButton.Name = "updateButton";
-            this.updateButton.Size = new System.Drawing.Size(150, 23);
-            this.updateButton.TabIndex = 5;
-            this.updateButton.Text = "Browse...";
-            this.updateButton.UseVisualStyleBackColor = true;
+            updateButton.Location = new Point(544, 39);
+            updateButton.Margin = new Padding(4, 3, 4, 3);
+            updateButton.Name = "updateButton";
+            updateButton.Size = new Size(150, 23);
+            updateButton.TabIndex = 5;
+            updateButton.Text = "Browse...";
+            updateButton.UseVisualStyleBackColor = true;
             // 
             // updateTextBox
             // 
-            this.updateTextBox.Location = new System.Drawing.Point(188, 39);
-            this.updateTextBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.updateTextBox.Name = "updateTextBox";
-            this.updateTextBox.ReadOnly = true;
-            this.updateTextBox.Size = new System.Drawing.Size(349, 23);
-            this.updateTextBox.TabIndex = 4;
+            updateTextBox.Location = new Point(188, 39);
+            updateTextBox.Margin = new Padding(4, 3, 4, 3);
+            updateTextBox.Name = "updateTextBox";
+            updateTextBox.Size = new Size(349, 23);
+            updateTextBox.TabIndex = 4;
             // 
             // updateLabel
             // 
-            this.updateLabel.AutoSize = true;
-            this.updateLabel.ForeColor = System.Drawing.Color.Black;
-            this.updateLabel.Location = new System.Drawing.Point(6, 42);
-            this.updateLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.updateLabel.Name = "updateLabel";
-            this.updateLabel.Size = new System.Drawing.Size(165, 15);
-            this.updateLabel.TabIndex = 3;
-            this.updateLabel.Text = "BotW Update Content Folder :";
+            updateLabel.AutoSize = true;
+            updateLabel.ForeColor = Color.Black;
+            updateLabel.Location = new Point(6, 42);
+            updateLabel.Margin = new Padding(4, 0, 4, 0);
+            updateLabel.Name = "updateLabel";
+            updateLabel.Size = new Size(165, 15);
+            updateLabel.TabIndex = 3;
+            updateLabel.Text = "BotW Update Content Folder :";
             // 
             // dlcButton
             // 
-            this.dlcButton.Location = new System.Drawing.Point(544, 68);
-            this.dlcButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.dlcButton.Name = "dlcButton";
-            this.dlcButton.Size = new System.Drawing.Size(150, 23);
-            this.dlcButton.TabIndex = 8;
-            this.dlcButton.Text = "Browse...";
-            this.dlcButton.UseVisualStyleBackColor = true;
+            dlcButton.Location = new Point(544, 68);
+            dlcButton.Margin = new Padding(4, 3, 4, 3);
+            dlcButton.Name = "dlcButton";
+            dlcButton.Size = new Size(150, 23);
+            dlcButton.TabIndex = 8;
+            dlcButton.Text = "Browse...";
+            dlcButton.UseVisualStyleBackColor = true;
             // 
             // dlcTextBox
             // 
-            this.dlcTextBox.Location = new System.Drawing.Point(188, 68);
-            this.dlcTextBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.dlcTextBox.Name = "dlcTextBox";
-            this.dlcTextBox.ReadOnly = true;
-            this.dlcTextBox.Size = new System.Drawing.Size(349, 23);
-            this.dlcTextBox.TabIndex = 7;
+            dlcTextBox.Location = new Point(188, 68);
+            dlcTextBox.Margin = new Padding(4, 3, 4, 3);
+            dlcTextBox.Name = "dlcTextBox";
+            dlcTextBox.Size = new Size(349, 23);
+            dlcTextBox.TabIndex = 7;
             // 
             // dlcLabel
             // 
-            this.dlcLabel.AutoSize = true;
-            this.dlcLabel.ForeColor = System.Drawing.Color.Black;
-            this.dlcLabel.Location = new System.Drawing.Point(6, 72);
-            this.dlcLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.dlcLabel.Name = "dlcLabel";
-            this.dlcLabel.Size = new System.Drawing.Size(149, 15);
-            this.dlcLabel.TabIndex = 6;
-            this.dlcLabel.Text = "BotW DLC Content Folder :";
+            dlcLabel.AutoSize = true;
+            dlcLabel.ForeColor = Color.Black;
+            dlcLabel.Location = new Point(6, 72);
+            dlcLabel.Margin = new Padding(4, 0, 4, 0);
+            dlcLabel.Name = "dlcLabel";
+            dlcLabel.Size = new Size(149, 15);
+            dlcLabel.TabIndex = 6;
+            dlcLabel.Text = "BotW DLC Content Folder :";
             // 
             // gfxPackButton
             // 
-            this.gfxPackButton.Location = new System.Drawing.Point(544, 112);
-            this.gfxPackButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.gfxPackButton.Name = "gfxPackButton";
-            this.gfxPackButton.Size = new System.Drawing.Size(150, 23);
-            this.gfxPackButton.TabIndex = 11;
-            this.gfxPackButton.Text = "Browse...";
-            this.gfxPackButton.UseVisualStyleBackColor = true;
+            gfxPackButton.Location = new Point(544, 112);
+            gfxPackButton.Margin = new Padding(4, 3, 4, 3);
+            gfxPackButton.Name = "gfxPackButton";
+            gfxPackButton.Size = new Size(150, 23);
+            gfxPackButton.TabIndex = 11;
+            gfxPackButton.Text = "Browse...";
+            gfxPackButton.UseVisualStyleBackColor = true;
             // 
             // gfxPackTextBox
             // 
-            this.gfxPackTextBox.Location = new System.Drawing.Point(188, 112);
-            this.gfxPackTextBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.gfxPackTextBox.Name = "gfxPackTextBox";
-            this.gfxPackTextBox.ReadOnly = true;
-            this.gfxPackTextBox.Size = new System.Drawing.Size(349, 23);
-            this.gfxPackTextBox.TabIndex = 10;
+            gfxPackTextBox.Location = new Point(188, 112);
+            gfxPackTextBox.Margin = new Padding(4, 3, 4, 3);
+            gfxPackTextBox.Name = "gfxPackTextBox";
+            gfxPackTextBox.Size = new Size(349, 23);
+            gfxPackTextBox.TabIndex = 10;
             // 
             // gfxPackLabel
             // 
-            this.gfxPackLabel.AutoSize = true;
-            this.gfxPackLabel.ForeColor = System.Drawing.Color.Black;
-            this.gfxPackLabel.Location = new System.Drawing.Point(6, 115);
-            this.gfxPackLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.gfxPackLabel.Name = "gfxPackLabel";
-            this.gfxPackLabel.Size = new System.Drawing.Size(158, 15);
-            this.gfxPackLabel.TabIndex = 9;
-            this.gfxPackLabel.Text = "Cemu Graphic Packs Folder :";
+            gfxPackLabel.AutoSize = true;
+            gfxPackLabel.ForeColor = Color.Black;
+            gfxPackLabel.Location = new Point(6, 115);
+            gfxPackLabel.Margin = new Padding(4, 0, 4, 0);
+            gfxPackLabel.Name = "gfxPackLabel";
+            gfxPackLabel.Size = new Size(158, 15);
+            gfxPackLabel.TabIndex = 9;
+            gfxPackLabel.Text = "Cemu Graphic Packs Folder :";
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(6, 239);
-            this.progressBar1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(688, 42);
-            this.progressBar1.TabIndex = 12;
+            progressBar1.Location = new Point(6, 239);
+            progressBar1.Margin = new Padding(4, 3, 4, 3);
+            progressBar1.Name = "progressBar1";
+            progressBar1.Size = new Size(688, 42);
+            progressBar1.TabIndex = 12;
             // 
             // randomizeButton
             // 
-            this.randomizeButton.Location = new System.Drawing.Point(6, 194);
-            this.randomizeButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.randomizeButton.Name = "randomizeButton";
-            this.randomizeButton.Size = new System.Drawing.Size(688, 39);
-            this.randomizeButton.TabIndex = 13;
-            this.randomizeButton.Text = "Randomize Game!";
-            this.randomizeButton.UseVisualStyleBackColor = true;
-            this.randomizeButton.Click += new System.EventHandler(this.RandomizeButtonClick);
+            randomizeButton.Location = new Point(6, 194);
+            randomizeButton.Margin = new Padding(4, 3, 4, 3);
+            randomizeButton.Name = "randomizeButton";
+            randomizeButton.Size = new Size(688, 39);
+            randomizeButton.TabIndex = 13;
+            randomizeButton.Text = "Randomize Game!";
+            randomizeButton.UseVisualStyleBackColor = true;
+            randomizeButton.Click += RandomizeButtonClick;
             // 
             // seedTextBox
             // 
-            this.seedTextBox.Location = new System.Drawing.Point(544, 165);
-            this.seedTextBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.seedTextBox.MaxLength = 15;
-            this.seedTextBox.Name = "seedTextBox";
-            this.seedTextBox.Size = new System.Drawing.Size(150, 23);
-            this.seedTextBox.TabIndex = 14;
+            seedTextBox.Location = new Point(544, 165);
+            seedTextBox.Margin = new Padding(4, 3, 4, 3);
+            seedTextBox.MaxLength = 15;
+            seedTextBox.Name = "seedTextBox";
+            seedTextBox.Size = new Size(150, 23);
+            seedTextBox.TabIndex = 14;
             // 
             // seedLabel
             // 
-            this.seedLabel.AutoSize = true;
-            this.seedLabel.ForeColor = System.Drawing.Color.Black;
-            this.seedLabel.Location = new System.Drawing.Point(493, 168);
-            this.seedLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.seedLabel.Name = "seedLabel";
-            this.seedLabel.Size = new System.Drawing.Size(38, 15);
-            this.seedLabel.TabIndex = 15;
-            this.seedLabel.Text = "Seed :";
+            seedLabel.AutoSize = true;
+            seedLabel.ForeColor = Color.Black;
+            seedLabel.Location = new Point(493, 168);
+            seedLabel.Margin = new Padding(4, 0, 4, 0);
+            seedLabel.Name = "seedLabel";
+            seedLabel.Size = new Size(38, 15);
+            seedLabel.TabIndex = 15;
+            seedLabel.Text = "Seed :";
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.mainTabPage);
-            this.tabControl1.Controls.Add(this.RandomizerToggleTabPage);
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(708, 314);
-            this.tabControl1.TabIndex = 17;
+            tabControl1.Controls.Add(mainTabPage);
+            tabControl1.Controls.Add(RandomizerToggleTabPage);
+            tabControl1.Location = new Point(0, 0);
+            tabControl1.Margin = new Padding(4, 3, 4, 3);
+            tabControl1.Name = "tabControl1";
+            tabControl1.SelectedIndex = 0;
+            tabControl1.Size = new Size(708, 314);
+            tabControl1.TabIndex = 17;
             // 
             // mainTabPage
             // 
-            this.mainTabPage.Controls.Add(this.baseLabel);
-            this.mainTabPage.Controls.Add(this.seedLabel);
-            this.mainTabPage.Controls.Add(this.baseTextBox);
-            this.mainTabPage.Controls.Add(this.seedTextBox);
-            this.mainTabPage.Controls.Add(this.baseButton);
-            this.mainTabPage.Controls.Add(this.randomizeButton);
-            this.mainTabPage.Controls.Add(this.updateLabel);
-            this.mainTabPage.Controls.Add(this.progressBar1);
-            this.mainTabPage.Controls.Add(this.updateTextBox);
-            this.mainTabPage.Controls.Add(this.gfxPackButton);
-            this.mainTabPage.Controls.Add(this.updateButton);
-            this.mainTabPage.Controls.Add(this.gfxPackTextBox);
-            this.mainTabPage.Controls.Add(this.dlcLabel);
-            this.mainTabPage.Controls.Add(this.gfxPackLabel);
-            this.mainTabPage.Controls.Add(this.dlcTextBox);
-            this.mainTabPage.Controls.Add(this.dlcButton);
-            this.mainTabPage.Location = new System.Drawing.Point(4, 24);
-            this.mainTabPage.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.mainTabPage.Name = "mainTabPage";
-            this.mainTabPage.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.mainTabPage.Size = new System.Drawing.Size(700, 286);
-            this.mainTabPage.TabIndex = 0;
-            this.mainTabPage.Text = "Main";
-            this.mainTabPage.UseVisualStyleBackColor = true;
+            mainTabPage.Controls.Add(baseLabel);
+            mainTabPage.Controls.Add(seedLabel);
+            mainTabPage.Controls.Add(baseTextBox);
+            mainTabPage.Controls.Add(seedTextBox);
+            mainTabPage.Controls.Add(baseButton);
+            mainTabPage.Controls.Add(randomizeButton);
+            mainTabPage.Controls.Add(updateLabel);
+            mainTabPage.Controls.Add(progressBar1);
+            mainTabPage.Controls.Add(updateTextBox);
+            mainTabPage.Controls.Add(gfxPackButton);
+            mainTabPage.Controls.Add(updateButton);
+            mainTabPage.Controls.Add(gfxPackTextBox);
+            mainTabPage.Controls.Add(dlcLabel);
+            mainTabPage.Controls.Add(gfxPackLabel);
+            mainTabPage.Controls.Add(dlcTextBox);
+            mainTabPage.Controls.Add(dlcButton);
+            mainTabPage.Location = new Point(4, 24);
+            mainTabPage.Margin = new Padding(4, 3, 4, 3);
+            mainTabPage.Name = "mainTabPage";
+            mainTabPage.Padding = new Padding(4, 3, 4, 3);
+            mainTabPage.Size = new Size(700, 286);
+            mainTabPage.TabIndex = 0;
+            mainTabPage.Text = "Main";
+            mainTabPage.UseVisualStyleBackColor = true;
             // 
             // RandomizerToggleTabPage
             // 
-            this.RandomizerToggleTabPage.Controls.Add(this.miscGroupBox);
-            this.RandomizerToggleTabPage.Controls.Add(this.overworldEntitiesGroupBox);
-            this.RandomizerToggleTabPage.Controls.Add(this.EquipmentGroupBox);
-            this.RandomizerToggleTabPage.Location = new System.Drawing.Point(4, 24);
-            this.RandomizerToggleTabPage.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.RandomizerToggleTabPage.Name = "RandomizerToggleTabPage";
-            this.RandomizerToggleTabPage.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.RandomizerToggleTabPage.Size = new System.Drawing.Size(700, 286);
-            this.RandomizerToggleTabPage.TabIndex = 1;
-            this.RandomizerToggleTabPage.Text = "Randomizer Toggles";
-            this.RandomizerToggleTabPage.UseVisualStyleBackColor = true;
+            RandomizerToggleTabPage.Controls.Add(miscGroupBox);
+            RandomizerToggleTabPage.Controls.Add(overworldEntitiesGroupBox);
+            RandomizerToggleTabPage.Controls.Add(EquipmentGroupBox);
+            RandomizerToggleTabPage.Location = new Point(4, 24);
+            RandomizerToggleTabPage.Margin = new Padding(4, 3, 4, 3);
+            RandomizerToggleTabPage.Name = "RandomizerToggleTabPage";
+            RandomizerToggleTabPage.Padding = new Padding(4, 3, 4, 3);
+            RandomizerToggleTabPage.Size = new Size(700, 286);
+            RandomizerToggleTabPage.TabIndex = 1;
+            RandomizerToggleTabPage.Text = "Randomizer Toggles";
+            RandomizerToggleTabPage.UseVisualStyleBackColor = true;
             // 
             // miscGroupBox
             // 
-            this.miscGroupBox.Controls.Add(this.panel5);
-            this.miscGroupBox.Location = new System.Drawing.Point(8, 149);
-            this.miscGroupBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.miscGroupBox.Name = "miscGroupBox";
-            this.miscGroupBox.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.miscGroupBox.Size = new System.Drawing.Size(349, 132);
-            this.miscGroupBox.TabIndex = 23;
-            this.miscGroupBox.TabStop = false;
-            this.miscGroupBox.Text = "Misc.";
+            miscGroupBox.Controls.Add(panel5);
+            miscGroupBox.Location = new Point(8, 149);
+            miscGroupBox.Margin = new Padding(4, 3, 4, 3);
+            miscGroupBox.Name = "miscGroupBox";
+            miscGroupBox.Padding = new Padding(4, 3, 4, 3);
+            miscGroupBox.Size = new Size(349, 132);
+            miscGroupBox.TabIndex = 23;
+            miscGroupBox.TabStop = false;
+            miscGroupBox.Text = "Misc.";
             // 
             // panel5
             // 
-            this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel5.Controls.Add(this.randomizeArmorShopsCheckbox);
-            this.panel5.Controls.Add(this.randomizeRupeesCheckbox);
-            this.panel5.Controls.Add(this.randomizeArrowsCheckbox);
-            this.panel5.Location = new System.Drawing.Point(6, 20);
-            this.panel5.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(336, 105);
-            this.panel5.TabIndex = 24;
+            panel5.BorderStyle = BorderStyle.FixedSingle;
+            panel5.Controls.Add(randomizeArmorShopsCheckbox);
+            panel5.Controls.Add(randomizeRupeesCheckbox);
+            panel5.Controls.Add(randomizeArrowsCheckbox);
+            panel5.Location = new Point(6, 20);
+            panel5.Margin = new Padding(4, 3, 4, 3);
+            panel5.Name = "panel5";
+            panel5.Size = new Size(336, 105);
+            panel5.TabIndex = 24;
             // 
             // randomizeArmorShopsCheckbox
             // 
-            this.randomizeArmorShopsCheckbox.AutoSize = true;
-            this.randomizeArmorShopsCheckbox.Location = new System.Drawing.Point(4, 57);
-            this.randomizeArmorShopsCheckbox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.randomizeArmorShopsCheckbox.Name = "randomizeArmorShopsCheckbox";
-            this.randomizeArmorShopsCheckbox.Size = new System.Drawing.Size(157, 19);
-            this.randomizeArmorShopsCheckbox.TabIndex = 27;
-            this.randomizeArmorShopsCheckbox.Text = "Randomize Armor Shops";
-            this.randomizeArmorShopsCheckbox.UseVisualStyleBackColor = true;
+            randomizeArmorShopsCheckbox.AutoSize = true;
+            randomizeArmorShopsCheckbox.Location = new Point(4, 57);
+            randomizeArmorShopsCheckbox.Margin = new Padding(4, 3, 4, 3);
+            randomizeArmorShopsCheckbox.Name = "randomizeArmorShopsCheckbox";
+            randomizeArmorShopsCheckbox.Size = new Size(157, 19);
+            randomizeArmorShopsCheckbox.TabIndex = 27;
+            randomizeArmorShopsCheckbox.Text = "Randomize Armor Shops";
+            randomizeArmorShopsCheckbox.UseVisualStyleBackColor = true;
             // 
             // randomizeRupeesCheckbox
             // 
-            this.randomizeRupeesCheckbox.AutoSize = true;
-            this.randomizeRupeesCheckbox.Location = new System.Drawing.Point(4, 3);
-            this.randomizeRupeesCheckbox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.randomizeRupeesCheckbox.Name = "randomizeRupeesCheckbox";
-            this.randomizeRupeesCheckbox.Size = new System.Drawing.Size(126, 19);
-            this.randomizeRupeesCheckbox.TabIndex = 25;
-            this.randomizeRupeesCheckbox.Text = "Randomize Rupees";
-            this.randomizeRupeesCheckbox.UseVisualStyleBackColor = true;
+            randomizeRupeesCheckbox.AutoSize = true;
+            randomizeRupeesCheckbox.Location = new Point(4, 3);
+            randomizeRupeesCheckbox.Margin = new Padding(4, 3, 4, 3);
+            randomizeRupeesCheckbox.Name = "randomizeRupeesCheckbox";
+            randomizeRupeesCheckbox.Size = new Size(126, 19);
+            randomizeRupeesCheckbox.TabIndex = 25;
+            randomizeRupeesCheckbox.Text = "Randomize Rupees";
+            randomizeRupeesCheckbox.UseVisualStyleBackColor = true;
             // 
             // randomizeArrowsCheckbox
             // 
-            this.randomizeArrowsCheckbox.AutoSize = true;
-            this.randomizeArrowsCheckbox.Location = new System.Drawing.Point(4, 30);
-            this.randomizeArrowsCheckbox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.randomizeArrowsCheckbox.Name = "randomizeArrowsCheckbox";
-            this.randomizeArrowsCheckbox.Size = new System.Drawing.Size(125, 19);
-            this.randomizeArrowsCheckbox.TabIndex = 26;
-            this.randomizeArrowsCheckbox.Text = "Randomize Arrows";
-            this.randomizeArrowsCheckbox.UseVisualStyleBackColor = true;
+            randomizeArrowsCheckbox.AutoSize = true;
+            randomizeArrowsCheckbox.Location = new Point(4, 30);
+            randomizeArrowsCheckbox.Margin = new Padding(4, 3, 4, 3);
+            randomizeArrowsCheckbox.Name = "randomizeArrowsCheckbox";
+            randomizeArrowsCheckbox.Size = new Size(125, 19);
+            randomizeArrowsCheckbox.TabIndex = 26;
+            randomizeArrowsCheckbox.Text = "Randomize Arrows";
+            randomizeArrowsCheckbox.UseVisualStyleBackColor = true;
             // 
             // overworldEntitiesGroupBox
             // 
-            this.overworldEntitiesGroupBox.Controls.Add(this.panel3);
-            this.overworldEntitiesGroupBox.Location = new System.Drawing.Point(363, 7);
-            this.overworldEntitiesGroupBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.overworldEntitiesGroupBox.Name = "overworldEntitiesGroupBox";
-            this.overworldEntitiesGroupBox.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.overworldEntitiesGroupBox.Size = new System.Drawing.Size(329, 273);
-            this.overworldEntitiesGroupBox.TabIndex = 22;
-            this.overworldEntitiesGroupBox.TabStop = false;
-            this.overworldEntitiesGroupBox.Text = "Overworld Entities";
+            overworldEntitiesGroupBox.Controls.Add(panel3);
+            overworldEntitiesGroupBox.Location = new Point(363, 7);
+            overworldEntitiesGroupBox.Margin = new Padding(4, 3, 4, 3);
+            overworldEntitiesGroupBox.Name = "overworldEntitiesGroupBox";
+            overworldEntitiesGroupBox.Padding = new Padding(4, 3, 4, 3);
+            overworldEntitiesGroupBox.Size = new Size(329, 273);
+            overworldEntitiesGroupBox.TabIndex = 22;
+            overworldEntitiesGroupBox.TabStop = false;
+            overworldEntitiesGroupBox.Text = "Overworld Entities";
             // 
             // panel3
             // 
-            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel3.Controls.Add(this.randomizeOresCheckbox);
-            this.panel3.Controls.Add(this.randomizeSubBossesCheckbox);
-            this.panel3.Controls.Add(this.randomizeInsectsCheckbox);
-            this.panel3.Controls.Add(this.randomizeFishesCheckbox);
-            this.panel3.Controls.Add(this.randomizeEnemiesCheckbox);
-            this.panel3.Controls.Add(this.randomizePlantsCheckbox);
-            this.panel3.Controls.Add(this.randomizeFruitsCheckbox);
-            this.panel3.Controls.Add(this.randomizeAnimalsCheckbox);
-            this.panel3.Controls.Add(this.randomizeMushroomsCheckbox);
-            this.panel3.Location = new System.Drawing.Point(9, 20);
-            this.panel3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(312, 247);
-            this.panel3.TabIndex = 24;
+            panel3.BorderStyle = BorderStyle.FixedSingle;
+            panel3.Controls.Add(randomizeOresCheckbox);
+            panel3.Controls.Add(randomizeSubBossesCheckbox);
+            panel3.Controls.Add(randomizeInsectsCheckbox);
+            panel3.Controls.Add(randomizeFishesCheckbox);
+            panel3.Controls.Add(randomizeEnemiesCheckbox);
+            panel3.Controls.Add(randomizePlantsCheckbox);
+            panel3.Controls.Add(randomizeFruitsCheckbox);
+            panel3.Controls.Add(randomizeAnimalsCheckbox);
+            panel3.Controls.Add(randomizeMushroomsCheckbox);
+            panel3.Location = new Point(9, 20);
+            panel3.Margin = new Padding(4, 3, 4, 3);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(312, 247);
+            panel3.TabIndex = 24;
             // 
             // randomizeOresCheckbox
             // 
-            this.randomizeOresCheckbox.AutoSize = true;
-            this.randomizeOresCheckbox.Location = new System.Drawing.Point(4, 189);
-            this.randomizeOresCheckbox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.randomizeOresCheckbox.Name = "randomizeOresCheckbox";
-            this.randomizeOresCheckbox.Size = new System.Drawing.Size(112, 19);
-            this.randomizeOresCheckbox.TabIndex = 31;
-            this.randomizeOresCheckbox.Text = "Randomize Ores";
-            this.randomizeOresCheckbox.UseVisualStyleBackColor = true;
+            randomizeOresCheckbox.AutoSize = true;
+            randomizeOresCheckbox.Location = new Point(4, 189);
+            randomizeOresCheckbox.Margin = new Padding(4, 3, 4, 3);
+            randomizeOresCheckbox.Name = "randomizeOresCheckbox";
+            randomizeOresCheckbox.Size = new Size(112, 19);
+            randomizeOresCheckbox.TabIndex = 31;
+            randomizeOresCheckbox.Text = "Randomize Ores";
+            randomizeOresCheckbox.UseVisualStyleBackColor = true;
             // 
             // randomizeSubBossesCheckbox
             // 
-            this.randomizeSubBossesCheckbox.AutoSize = true;
-            this.randomizeSubBossesCheckbox.Location = new System.Drawing.Point(4, 216);
-            this.randomizeSubBossesCheckbox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.randomizeSubBossesCheckbox.Name = "randomizeSubBossesCheckbox";
-            this.randomizeSubBossesCheckbox.Size = new System.Drawing.Size(148, 19);
-            this.randomizeSubBossesCheckbox.TabIndex = 26;
-            this.randomizeSubBossesCheckbox.Text = "Randomize Sub-Bosses";
-            this.randomizeSubBossesCheckbox.UseVisualStyleBackColor = true;
+            randomizeSubBossesCheckbox.AutoSize = true;
+            randomizeSubBossesCheckbox.Location = new Point(4, 216);
+            randomizeSubBossesCheckbox.Margin = new Padding(4, 3, 4, 3);
+            randomizeSubBossesCheckbox.Name = "randomizeSubBossesCheckbox";
+            randomizeSubBossesCheckbox.Size = new Size(148, 19);
+            randomizeSubBossesCheckbox.TabIndex = 26;
+            randomizeSubBossesCheckbox.Text = "Randomize Sub-Bosses";
+            randomizeSubBossesCheckbox.UseVisualStyleBackColor = true;
             // 
             // randomizeInsectsCheckbox
             // 
-            this.randomizeInsectsCheckbox.AutoSize = true;
-            this.randomizeInsectsCheckbox.Location = new System.Drawing.Point(4, 30);
-            this.randomizeInsectsCheckbox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.randomizeInsectsCheckbox.Name = "randomizeInsectsCheckbox";
-            this.randomizeInsectsCheckbox.Size = new System.Drawing.Size(124, 19);
-            this.randomizeInsectsCheckbox.TabIndex = 25;
-            this.randomizeInsectsCheckbox.Text = "Randomize Insects";
-            this.randomizeInsectsCheckbox.UseVisualStyleBackColor = true;
+            randomizeInsectsCheckbox.AutoSize = true;
+            randomizeInsectsCheckbox.Location = new Point(4, 30);
+            randomizeInsectsCheckbox.Margin = new Padding(4, 3, 4, 3);
+            randomizeInsectsCheckbox.Name = "randomizeInsectsCheckbox";
+            randomizeInsectsCheckbox.Size = new Size(124, 19);
+            randomizeInsectsCheckbox.TabIndex = 25;
+            randomizeInsectsCheckbox.Text = "Randomize Insects";
+            randomizeInsectsCheckbox.UseVisualStyleBackColor = true;
             // 
             // randomizeFishesCheckbox
             // 
-            this.randomizeFishesCheckbox.AutoSize = true;
-            this.randomizeFishesCheckbox.Location = new System.Drawing.Point(4, 163);
-            this.randomizeFishesCheckbox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.randomizeFishesCheckbox.Name = "randomizeFishesCheckbox";
-            this.randomizeFishesCheckbox.Size = new System.Drawing.Size(120, 19);
-            this.randomizeFishesCheckbox.TabIndex = 30;
-            this.randomizeFishesCheckbox.Text = "Randomize Fishes";
-            this.randomizeFishesCheckbox.UseVisualStyleBackColor = true;
+            randomizeFishesCheckbox.AutoSize = true;
+            randomizeFishesCheckbox.Location = new Point(4, 163);
+            randomizeFishesCheckbox.Margin = new Padding(4, 3, 4, 3);
+            randomizeFishesCheckbox.Name = "randomizeFishesCheckbox";
+            randomizeFishesCheckbox.Size = new Size(120, 19);
+            randomizeFishesCheckbox.TabIndex = 30;
+            randomizeFishesCheckbox.Text = "Randomize Fishes";
+            randomizeFishesCheckbox.UseVisualStyleBackColor = true;
             // 
             // randomizeEnemiesCheckbox
             // 
-            this.randomizeEnemiesCheckbox.AutoSize = true;
-            this.randomizeEnemiesCheckbox.Location = new System.Drawing.Point(4, 3);
-            this.randomizeEnemiesCheckbox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.randomizeEnemiesCheckbox.Name = "randomizeEnemiesCheckbox";
-            this.randomizeEnemiesCheckbox.Size = new System.Drawing.Size(132, 19);
-            this.randomizeEnemiesCheckbox.TabIndex = 25;
-            this.randomizeEnemiesCheckbox.Text = "Randomize Enemies";
-            this.randomizeEnemiesCheckbox.UseVisualStyleBackColor = true;
+            randomizeEnemiesCheckbox.AutoSize = true;
+            randomizeEnemiesCheckbox.Location = new Point(4, 3);
+            randomizeEnemiesCheckbox.Margin = new Padding(4, 3, 4, 3);
+            randomizeEnemiesCheckbox.Name = "randomizeEnemiesCheckbox";
+            randomizeEnemiesCheckbox.Size = new Size(132, 19);
+            randomizeEnemiesCheckbox.TabIndex = 25;
+            randomizeEnemiesCheckbox.Text = "Randomize Enemies";
+            randomizeEnemiesCheckbox.UseVisualStyleBackColor = true;
             // 
             // randomizePlantsCheckbox
             // 
-            this.randomizePlantsCheckbox.AutoSize = true;
-            this.randomizePlantsCheckbox.Location = new System.Drawing.Point(4, 57);
-            this.randomizePlantsCheckbox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.randomizePlantsCheckbox.Name = "randomizePlantsCheckbox";
-            this.randomizePlantsCheckbox.Size = new System.Drawing.Size(120, 19);
-            this.randomizePlantsCheckbox.TabIndex = 26;
-            this.randomizePlantsCheckbox.Text = "Randomize Plants";
-            this.randomizePlantsCheckbox.UseVisualStyleBackColor = true;
+            randomizePlantsCheckbox.AutoSize = true;
+            randomizePlantsCheckbox.Location = new Point(4, 57);
+            randomizePlantsCheckbox.Margin = new Padding(4, 3, 4, 3);
+            randomizePlantsCheckbox.Name = "randomizePlantsCheckbox";
+            randomizePlantsCheckbox.Size = new Size(120, 19);
+            randomizePlantsCheckbox.TabIndex = 26;
+            randomizePlantsCheckbox.Text = "Randomize Plants";
+            randomizePlantsCheckbox.UseVisualStyleBackColor = true;
             // 
             // randomizeFruitsCheckbox
             // 
-            this.randomizeFruitsCheckbox.AutoSize = true;
-            this.randomizeFruitsCheckbox.Location = new System.Drawing.Point(4, 110);
-            this.randomizeFruitsCheckbox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.randomizeFruitsCheckbox.Name = "randomizeFruitsCheckbox";
-            this.randomizeFruitsCheckbox.Size = new System.Drawing.Size(117, 19);
-            this.randomizeFruitsCheckbox.TabIndex = 28;
-            this.randomizeFruitsCheckbox.Text = "Randomize Fruits";
-            this.randomizeFruitsCheckbox.UseVisualStyleBackColor = true;
+            randomizeFruitsCheckbox.AutoSize = true;
+            randomizeFruitsCheckbox.Location = new Point(4, 110);
+            randomizeFruitsCheckbox.Margin = new Padding(4, 3, 4, 3);
+            randomizeFruitsCheckbox.Name = "randomizeFruitsCheckbox";
+            randomizeFruitsCheckbox.Size = new Size(117, 19);
+            randomizeFruitsCheckbox.TabIndex = 28;
+            randomizeFruitsCheckbox.Text = "Randomize Fruits";
+            randomizeFruitsCheckbox.UseVisualStyleBackColor = true;
             // 
             // randomizeAnimalsCheckbox
             // 
-            this.randomizeAnimalsCheckbox.AutoSize = true;
-            this.randomizeAnimalsCheckbox.Location = new System.Drawing.Point(4, 136);
-            this.randomizeAnimalsCheckbox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.randomizeAnimalsCheckbox.Name = "randomizeAnimalsCheckbox";
-            this.randomizeAnimalsCheckbox.Size = new System.Drawing.Size(131, 19);
-            this.randomizeAnimalsCheckbox.TabIndex = 29;
-            this.randomizeAnimalsCheckbox.Text = "Randomize Animals";
-            this.randomizeAnimalsCheckbox.UseVisualStyleBackColor = true;
+            randomizeAnimalsCheckbox.AutoSize = true;
+            randomizeAnimalsCheckbox.Location = new Point(4, 136);
+            randomizeAnimalsCheckbox.Margin = new Padding(4, 3, 4, 3);
+            randomizeAnimalsCheckbox.Name = "randomizeAnimalsCheckbox";
+            randomizeAnimalsCheckbox.Size = new Size(131, 19);
+            randomizeAnimalsCheckbox.TabIndex = 29;
+            randomizeAnimalsCheckbox.Text = "Randomize Animals";
+            randomizeAnimalsCheckbox.UseVisualStyleBackColor = true;
             // 
             // randomizeMushroomsCheckbox
             // 
-            this.randomizeMushroomsCheckbox.AutoSize = true;
-            this.randomizeMushroomsCheckbox.Location = new System.Drawing.Point(4, 83);
-            this.randomizeMushroomsCheckbox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.randomizeMushroomsCheckbox.Name = "randomizeMushroomsCheckbox";
-            this.randomizeMushroomsCheckbox.Size = new System.Drawing.Size(152, 19);
-            this.randomizeMushroomsCheckbox.TabIndex = 27;
-            this.randomizeMushroomsCheckbox.Text = "Randomize Mushrooms";
-            this.randomizeMushroomsCheckbox.UseVisualStyleBackColor = true;
+            randomizeMushroomsCheckbox.AutoSize = true;
+            randomizeMushroomsCheckbox.Location = new Point(4, 83);
+            randomizeMushroomsCheckbox.Margin = new Padding(4, 3, 4, 3);
+            randomizeMushroomsCheckbox.Name = "randomizeMushroomsCheckbox";
+            randomizeMushroomsCheckbox.Size = new Size(152, 19);
+            randomizeMushroomsCheckbox.TabIndex = 27;
+            randomizeMushroomsCheckbox.Text = "Randomize Mushrooms";
+            randomizeMushroomsCheckbox.UseVisualStyleBackColor = true;
             // 
             // EquipmentGroupBox
             // 
-            this.EquipmentGroupBox.Controls.Add(this.panel1);
-            this.EquipmentGroupBox.Location = new System.Drawing.Point(8, 7);
-            this.EquipmentGroupBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.EquipmentGroupBox.Name = "EquipmentGroupBox";
-            this.EquipmentGroupBox.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.EquipmentGroupBox.Size = new System.Drawing.Size(349, 135);
-            this.EquipmentGroupBox.TabIndex = 21;
-            this.EquipmentGroupBox.TabStop = false;
-            this.EquipmentGroupBox.Text = "Equipment";
+            EquipmentGroupBox.Controls.Add(panel1);
+            EquipmentGroupBox.Location = new Point(8, 7);
+            EquipmentGroupBox.Margin = new Padding(4, 3, 4, 3);
+            EquipmentGroupBox.Name = "EquipmentGroupBox";
+            EquipmentGroupBox.Padding = new Padding(4, 3, 4, 3);
+            EquipmentGroupBox.Size = new Size(349, 135);
+            EquipmentGroupBox.TabIndex = 21;
+            EquipmentGroupBox.TabStop = false;
+            EquipmentGroupBox.Text = "Equipment";
             // 
             // panel1
             // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.randomizeShieldsCheckbox);
-            this.panel1.Controls.Add(this.randomizeArmorCheckbox);
-            this.panel1.Controls.Add(this.randomizeBowsCheckbox);
-            this.panel1.Controls.Add(this.randomizeSwordsCheckbox);
-            this.panel1.Controls.Add(this.randomizeSpearsCheckbox);
-            this.panel1.Controls.Add(this.randomizeLongSwordsCheckbox);
-            this.panel1.Location = new System.Drawing.Point(6, 22);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(336, 106);
-            this.panel1.TabIndex = 24;
+            panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(randomizeShieldsCheckbox);
+            panel1.Controls.Add(randomizeArmorCheckbox);
+            panel1.Controls.Add(randomizeBowsCheckbox);
+            panel1.Controls.Add(randomizeSwordsCheckbox);
+            panel1.Controls.Add(randomizeSpearsCheckbox);
+            panel1.Controls.Add(randomizeLongSwordsCheckbox);
+            panel1.Location = new Point(6, 22);
+            panel1.Margin = new Padding(4, 3, 4, 3);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(336, 106);
+            panel1.TabIndex = 24;
             // 
             // randomizeShieldsCheckbox
             // 
-            this.randomizeShieldsCheckbox.AutoSize = true;
-            this.randomizeShieldsCheckbox.Location = new System.Drawing.Point(195, 3);
-            this.randomizeShieldsCheckbox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.randomizeShieldsCheckbox.Name = "randomizeShieldsCheckbox";
-            this.randomizeShieldsCheckbox.Size = new System.Drawing.Size(125, 19);
-            this.randomizeShieldsCheckbox.TabIndex = 33;
-            this.randomizeShieldsCheckbox.Text = "Randomize Shields";
-            this.randomizeShieldsCheckbox.UseVisualStyleBackColor = true;
+            randomizeShieldsCheckbox.AutoSize = true;
+            randomizeShieldsCheckbox.Location = new Point(195, 3);
+            randomizeShieldsCheckbox.Margin = new Padding(4, 3, 4, 3);
+            randomizeShieldsCheckbox.Name = "randomizeShieldsCheckbox";
+            randomizeShieldsCheckbox.Size = new Size(125, 19);
+            randomizeShieldsCheckbox.TabIndex = 33;
+            randomizeShieldsCheckbox.Text = "Randomize Shields";
+            randomizeShieldsCheckbox.UseVisualStyleBackColor = true;
             // 
             // randomizeArmorCheckbox
             // 
-            this.randomizeArmorCheckbox.AutoSize = true;
-            this.randomizeArmorCheckbox.Location = new System.Drawing.Point(4, 3);
-            this.randomizeArmorCheckbox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.randomizeArmorCheckbox.Name = "randomizeArmorCheckbox";
-            this.randomizeArmorCheckbox.Size = new System.Drawing.Size(127, 19);
-            this.randomizeArmorCheckbox.TabIndex = 25;
-            this.randomizeArmorCheckbox.Text = "Randomize Armors";
-            this.randomizeArmorCheckbox.UseVisualStyleBackColor = true;
+            randomizeArmorCheckbox.AutoSize = true;
+            randomizeArmorCheckbox.Location = new Point(4, 3);
+            randomizeArmorCheckbox.Margin = new Padding(4, 3, 4, 3);
+            randomizeArmorCheckbox.Name = "randomizeArmorCheckbox";
+            randomizeArmorCheckbox.Size = new Size(127, 19);
+            randomizeArmorCheckbox.TabIndex = 25;
+            randomizeArmorCheckbox.Text = "Randomize Armors";
+            randomizeArmorCheckbox.UseVisualStyleBackColor = true;
             // 
             // randomizeBowsCheckbox
             // 
-            this.randomizeBowsCheckbox.AutoSize = true;
-            this.randomizeBowsCheckbox.Location = new System.Drawing.Point(195, 57);
-            this.randomizeBowsCheckbox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.randomizeBowsCheckbox.Name = "randomizeBowsCheckbox";
-            this.randomizeBowsCheckbox.Size = new System.Drawing.Size(116, 19);
-            this.randomizeBowsCheckbox.TabIndex = 32;
-            this.randomizeBowsCheckbox.Text = "Randomize Bows";
-            this.randomizeBowsCheckbox.UseVisualStyleBackColor = true;
+            randomizeBowsCheckbox.AutoSize = true;
+            randomizeBowsCheckbox.Location = new Point(195, 57);
+            randomizeBowsCheckbox.Margin = new Padding(4, 3, 4, 3);
+            randomizeBowsCheckbox.Name = "randomizeBowsCheckbox";
+            randomizeBowsCheckbox.Size = new Size(116, 19);
+            randomizeBowsCheckbox.TabIndex = 32;
+            randomizeBowsCheckbox.Text = "Randomize Bows";
+            randomizeBowsCheckbox.UseVisualStyleBackColor = true;
             // 
             // randomizeSwordsCheckbox
             // 
-            this.randomizeSwordsCheckbox.AutoSize = true;
-            this.randomizeSwordsCheckbox.Location = new System.Drawing.Point(4, 30);
-            this.randomizeSwordsCheckbox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.randomizeSwordsCheckbox.Name = "randomizeSwordsCheckbox";
-            this.randomizeSwordsCheckbox.Size = new System.Drawing.Size(126, 19);
-            this.randomizeSwordsCheckbox.TabIndex = 28;
-            this.randomizeSwordsCheckbox.Text = "Randomize Swords";
-            this.randomizeSwordsCheckbox.UseVisualStyleBackColor = true;
+            randomizeSwordsCheckbox.AutoSize = true;
+            randomizeSwordsCheckbox.Location = new Point(4, 30);
+            randomizeSwordsCheckbox.Margin = new Padding(4, 3, 4, 3);
+            randomizeSwordsCheckbox.Name = "randomizeSwordsCheckbox";
+            randomizeSwordsCheckbox.Size = new Size(126, 19);
+            randomizeSwordsCheckbox.TabIndex = 28;
+            randomizeSwordsCheckbox.Text = "Randomize Swords";
+            randomizeSwordsCheckbox.UseVisualStyleBackColor = true;
             // 
             // randomizeSpearsCheckbox
             // 
-            this.randomizeSpearsCheckbox.AutoSize = true;
-            this.randomizeSpearsCheckbox.Location = new System.Drawing.Point(195, 30);
-            this.randomizeSpearsCheckbox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.randomizeSpearsCheckbox.Name = "randomizeSpearsCheckbox";
-            this.randomizeSpearsCheckbox.Size = new System.Drawing.Size(122, 19);
-            this.randomizeSpearsCheckbox.TabIndex = 30;
-            this.randomizeSpearsCheckbox.Text = "Randomize Spears";
-            this.randomizeSpearsCheckbox.UseVisualStyleBackColor = true;
+            randomizeSpearsCheckbox.AutoSize = true;
+            randomizeSpearsCheckbox.Location = new Point(195, 30);
+            randomizeSpearsCheckbox.Margin = new Padding(4, 3, 4, 3);
+            randomizeSpearsCheckbox.Name = "randomizeSpearsCheckbox";
+            randomizeSpearsCheckbox.Size = new Size(122, 19);
+            randomizeSpearsCheckbox.TabIndex = 30;
+            randomizeSpearsCheckbox.Text = "Randomize Spears";
+            randomizeSpearsCheckbox.UseVisualStyleBackColor = true;
             // 
             // randomizeLongSwordsCheckbox
             // 
-            this.randomizeLongSwordsCheckbox.AutoSize = true;
-            this.randomizeLongSwordsCheckbox.Location = new System.Drawing.Point(4, 57);
-            this.randomizeLongSwordsCheckbox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.randomizeLongSwordsCheckbox.Name = "randomizeLongSwordsCheckbox";
-            this.randomizeLongSwordsCheckbox.Size = new System.Drawing.Size(156, 19);
-            this.randomizeLongSwordsCheckbox.TabIndex = 29;
-            this.randomizeLongSwordsCheckbox.Text = "Randomize Long Swords";
-            this.randomizeLongSwordsCheckbox.UseVisualStyleBackColor = true;
+            randomizeLongSwordsCheckbox.AutoSize = true;
+            randomizeLongSwordsCheckbox.Location = new Point(4, 57);
+            randomizeLongSwordsCheckbox.Margin = new Padding(4, 3, 4, 3);
+            randomizeLongSwordsCheckbox.Name = "randomizeLongSwordsCheckbox";
+            randomizeLongSwordsCheckbox.Size = new Size(156, 19);
+            randomizeLongSwordsCheckbox.TabIndex = 29;
+            randomizeLongSwordsCheckbox.Text = "Randomize Long Swords";
+            randomizeLongSwordsCheckbox.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(706, 312);
-            this.Controls.Add(this.tabControl1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.MaximizeBox = false;
-            this.Name = "Form1";
-            this.Text = "BotW Randomizer Tool";
-            this.Load += new System.EventHandler(this.Form1_Load);
-            this.tabControl1.ResumeLayout(false);
-            this.mainTabPage.ResumeLayout(false);
-            this.mainTabPage.PerformLayout();
-            this.RandomizerToggleTabPage.ResumeLayout(false);
-            this.miscGroupBox.ResumeLayout(false);
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
-            this.overworldEntitiesGroupBox.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
-            this.EquipmentGroupBox.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.Control;
+            ClientSize = new Size(706, 312);
+            Controls.Add(tabControl1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(4, 3, 4, 3);
+            MaximizeBox = false;
+            Name = "Form1";
+            Text = "BotW Randomizer Tool";
+            Load += Form1_Load;
+            tabControl1.ResumeLayout(false);
+            mainTabPage.ResumeLayout(false);
+            mainTabPage.PerformLayout();
+            RandomizerToggleTabPage.ResumeLayout(false);
+            miscGroupBox.ResumeLayout(false);
+            panel5.ResumeLayout(false);
+            panel5.PerformLayout();
+            overworldEntitiesGroupBox.ResumeLayout(false);
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
+            EquipmentGroupBox.ResumeLayout(false);
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            ResumeLayout(false);
         }
 
         #endregion
