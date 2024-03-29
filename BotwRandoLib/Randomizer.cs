@@ -42,17 +42,15 @@ namespace BotwRandoLib {
         /// <param name="progress">Has values from 0-8, 100 being exit due to error.</param>
         /// <param name="seed"></param>
         /// <exception cref="ArgumentException"></exception>
-        public static void RandomizeGame(string basePath, string updatePath, string dlcPath, string gfxPackPath, Dictionary<string, bool> randomizationSettings, int chaoschance, out int progress, string seed = null) {
+        public static void RandomizeGame(string basePath, string updatePath, string dlcPath, string gfxPackPath, Dictionary<string, bool> randomizationSettings, Dictionary<string, int> randomizationIntSettings, out int progress, string seed = null) {
             if (String.IsNullOrWhiteSpace(seed)) seed = GenerateSeed();
 
-            if(randomizationSettings.ContainsKey("swapmodeCheckbox")){
-                Randomizer.swapmode = randomizationSettings["swapmodeCheckbox"];
-            }else{
-                Randomizer.swapmode = true;
-            }
+            if(randomizationSettings.ContainsKey("swapmodeCheckbox")) Randomizer.swapmode = randomizationSettings["swapmodeCheckbox"];
+            else Randomizer.swapmode = true;
             
-            Randomizer.chaoschance = chaoschance * 100;
-
+            if(randomizationIntSettings.ContainsKey("chaosChanceInput")) Randomizer.chaoschance = randomizationIntSettings["chaosChanceInput"] * 100;
+            else Randomizer.chaoschance = 200;
+          
             random = new Random(unchecked((int)Crc32.Compute(seed)));
 
             progress = 0;
@@ -65,7 +63,7 @@ namespace BotwRandoLib {
 
             overworldObjectsTable = new BotwObjects();
             chestObjectsTable = new BotwRandoTable(CHEST_COUNT);
-            overworldObjectMap = new BotwObjectMap(random, overworldObjectsTable);
+            overworldObjectMap = new BotwObjectMap(random, overworldObjectsTable, randomizationIntSettings);
 
             progress++; // 1
 

@@ -1,32 +1,32 @@
 using BotwRandoLib;
 using Ookii.Dialogs.WinForms;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Reflection;
+using System.Security.Policy;
 
 namespace BotwRando
 {
-    public partial class Form1 : Form
-    {
+    public partial class Form1 : Form {
         public SettingsFile settingsFile = new SettingsFile();
         public const string SETTINGS_PATH = "settings.json";
         internal const string VERSION = Randomizer.VERSION;
 
-        public Form1()
-        {
+        public Form1() {
             InitializeComponent();
         }
 
         /// <summary>
         /// The function that gets executed when the user clicks on <see cref="randomizeButton"></see>.
         /// </summary>
-        private void RandomizeButtonClick(object sender, EventArgs e)
-        {
+        private void RandomizeButtonClick(object sender, EventArgs e) {
             // Variable shortness
             string basePath = settingsFile.StringSettings.BasePath.Value;
             string updatePath = settingsFile.StringSettings.UpdatePath.Value;
             string dlcPath = settingsFile.StringSettings.DlcPath.Value;
             string gfxPackPath = settingsFile.StringSettings.GfxPackPath.Value;
             Dictionary<string, bool> randoOptions = settingsFile.CheckBoxSettings.ToDictionary();
+            Dictionary<string, int> randoIntOptions = settingsFile.IntSettings.ToDictionary();
 
             // Toggle everything off, randomize, toggle everything on again.
             ControlsToggle(false);
@@ -36,26 +36,25 @@ namespace BotwRando
             int maxProgress = 14;
             int lastProgress = -1;
 
-            Task.Run(() => Randomizer.RandomizeGame(basePath, updatePath, dlcPath, gfxPackPath, randoOptions, settingsFile.IntSettings.ChaosChance.Value, out progress, seedTextBox.Text));
+            Task.Run(() => Randomizer.RandomizeGame(basePath, updatePath, dlcPath, gfxPackPath, randoOptions, randoIntOptions, out progress, seedTextBox.Text));
 
             progressBar1.Maximum = maxProgress;
 
-            while (progress < maxProgress)
-            {
+            while (progress < maxProgress) {
                 progressBar1.Value = progress;
 
                 if (progress != lastProgress) {
-                    switch(progress){
-                        case  0: progressLabel.Text = progress.ToString() + ": Initializing"; break;
-                        case  1: progressLabel.Text = progress.ToString() + ": Checking for valid paths"; break;
-                        case  2: progressLabel.Text = progress.ToString() + ": Removing old matching packs"; break;
-                        case  3: progressLabel.Text = progress.ToString() + ": Creating spoiler log"; break;
-                        case  4: progressLabel.Text = progress.ToString() + ": Creating rules.txt"; break;
-                        case  5: progressLabel.Text = progress.ToString() + ": Setting path variables"; break;
-                        case  6: progressLabel.Text = progress.ToString() + ": Corrupting data for fun"; break;
-                        case  7: progressLabel.Text = progress.ToString() + ": Copying game files to graphic pack"; break;
-                        case  8: progressLabel.Text = progress.ToString() + ": Copying shrine files to graphic pack"; break;
-                        case  9: progressLabel.Text = progress.ToString() + ": Patching overworld files"; break;
+                    switch (progress) {
+                        case 0: progressLabel.Text = progress.ToString() + ": Initializing"; break;
+                        case 1: progressLabel.Text = progress.ToString() + ": Checking for valid paths"; break;
+                        case 2: progressLabel.Text = progress.ToString() + ": Removing old matching packs"; break;
+                        case 3: progressLabel.Text = progress.ToString() + ": Creating spoiler log"; break;
+                        case 4: progressLabel.Text = progress.ToString() + ": Creating rules.txt"; break;
+                        case 5: progressLabel.Text = progress.ToString() + ": Setting path variables"; break;
+                        case 6: progressLabel.Text = progress.ToString() + ": Corrupting data for fun"; break;
+                        case 7: progressLabel.Text = progress.ToString() + ": Copying game files to graphic pack"; break;
+                        case 8: progressLabel.Text = progress.ToString() + ": Copying shrine files to graphic pack"; break;
+                        case 9: progressLabel.Text = progress.ToString() + ": Patching overworld files"; break;
                         case 10: progressLabel.Text = progress.ToString() + ": Patching dungeon files"; break;
                         case 11: progressLabel.Text = progress.ToString() + ": Updating game data"; break;
                         case 12: progressLabel.Text = progress.ToString() + ": Updating events"; break;
@@ -67,14 +66,11 @@ namespace BotwRando
                 Application.DoEvents();
             }
 
-            if (progress == maxProgress)
-            {
+            if (progress == maxProgress) {
                 progressBar1.Value = progress;
                 progressLabel.Text = "Finished! Restart Cemu and enable the graphic pack before playing!";
                 // MessageBox.Show("Don't forget to restart Cemu and enable the graphic pack before playing!", "Randomization process successful!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-            else
-            {
+            } else {
                 MessageBox.Show("An error has occured while randomizing the game!");
                 progressLabel.Text = "Something went wrong around step " + lastProgress.ToString();
             }
@@ -89,11 +85,9 @@ namespace BotwRando
         /// Toggles all Controls in <see cref="Form1"></see> to <paramref name="enabled"></paramref>.
         /// </summary>
         /// <param name="enabled">Boolean to set Control state to.</param>
-        private void ControlsToggle(bool enabled)
-        {
+        private void ControlsToggle(bool enabled) {
             // Toggle individual controls as disabled. If we disable the whole form, it'll get unresponsive
-            foreach (Control c in Controls)
-            {
+            foreach (Control c in Controls) {
                 c.Enabled = enabled;
             }
         }
@@ -102,8 +96,7 @@ namespace BotwRando
         /// Checks if all browse fields are filled in. 
         /// </summary>
         /// <returns>True if all browse fields are filled in, otherwise false.</returns>
-        private bool AreAllBrowseFieldsFilledIn()
-        {
+        private bool AreAllBrowseFieldsFilledIn() {
             // Variable shortness
             string basePath = settingsFile.StringSettings.BasePath.Value;
             string updatePath = settingsFile.StringSettings.UpdatePath.Value;
@@ -119,16 +112,14 @@ namespace BotwRando
         /// <param name="control">The <see cref="Control"></see> to get all (Sub-) Children from.</param>
         /// <param name="type">The <see cref="Type"> to filter for.</see></param>
         /// <returns></returns>
-        public IEnumerable<Control> GetAllFormControls(Control control, Type type)
-        {
+        public IEnumerable<Control> GetAllFormControls(Control control, Type type) {
             var controls = control.Controls.Cast<Control>();
             return controls.SelectMany(ctrl => GetAllFormControls(ctrl, type))
                                       .Concat(controls)
                                       .Where(c => c.GetType() == type);
         }
 
-        private void BrowseButtonClick(TextBox textBox, string dialogDescription, ref StringOption setting)
-        {
+        private void BrowseButtonClick(TextBox textBox, string dialogDescription, ref StringOption setting) {
             // Setup Folder dialog box
             VistaFolderBrowserDialog dialog = new VistaFolderBrowserDialog();
             dialog.Description = dialogDescription;
@@ -143,15 +134,12 @@ namespace BotwRando
             // If we're on a botw Path, it needs to be named "content", if we're on a cemu path, it needs be named graphicPacks
             string folderNameToCheck = textBox.Name != "gfxPackTextBox" ? "content" : "graphicPacks";
 
-            if (dirName == folderNameToCheck)
-            {
+            if (dirName == folderNameToCheck) {
                 // Naming scheme is correct, adjust text box and save path to Settings
                 textBox.Text = dialog.SelectedPath;
                 setting.Value = dialog.SelectedPath;
                 Helpers.SaveSettings(SETTINGS_PATH, settingsFile);
-            }
-            else
-            {
+            } else {
                 // Naming scheme is incorrect, show error
                 MessageBox.Show("The folder you have selected wasn't named \"" + folderNameToCheck + "\".", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
@@ -160,8 +148,8 @@ namespace BotwRando
             randomizeButton.Enabled = AreAllBrowseFieldsFilledIn();
         }
 
-        private void DirectoryTextboxChanged(TextBox textBox, ref StringOption setting){
-            if(!Directory.Exists(textBox.Text)){
+        private void DirectoryTextboxChanged(TextBox textBox, ref StringOption setting) {
+            if (!Directory.Exists(textBox.Text)) {
                 MessageBox.Show("The path entered is not a valid directory.", "Wuh oh!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 randomizeButton.Enabled = false;
                 return;
@@ -172,14 +160,11 @@ namespace BotwRando
             // If we're on a botw Path, it needs to be named "content", if we're on a cemu path, it needs be named graphicPacks
             string folderNameToCheck = textBox.Name != "gfxPackTextBox" ? "content" : "graphicPacks";
 
-            if (dirName == folderNameToCheck)
-            {
+            if (dirName == folderNameToCheck) {
                 // Naming scheme is correct, adjust text box and save path to Settings
                 setting.Value = textBox.Text;
                 Helpers.SaveSettings(SETTINGS_PATH, settingsFile);
-            }
-            else
-            {
+            } else {
                 // Naming scheme is incorrect, show error
                 MessageBox.Show("The folder you have selected wasn't named \"" + folderNameToCheck + "\".", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
@@ -188,16 +173,14 @@ namespace BotwRando
             randomizeButton.Enabled = AreAllBrowseFieldsFilledIn();
         }
 
-        private void ChangedNumericUpDown(NumericUpDown input, ref IntOption setting)
-        {
+        private void ChangedNumericUpDown(NumericUpDown input, ref IntOption setting) {
             // Second, save the setting
             setting.ComponentName = input.Name;
             setting.Value = (int)input.Value;
             Helpers.SaveSettings(SETTINGS_PATH, settingsFile);
         }
 
-        private void CheckedBox(CheckBox checkBox, ref CheckBoxOption setting)
-        {
+        private void CheckedBox(CheckBox checkBox, ref CheckBoxOption setting) {
             // Second, save the setting
             setting.ComponentName = checkBox.Name;
             setting.Value = checkBox.Checked;
@@ -207,21 +190,17 @@ namespace BotwRando
         /// <summary>
         /// Function that loads in all the settings from <see cref="settingsFile"></see> and refreshes the UI accordingly.
         /// </summary>
-        private void ReplaceFormControls()
-        {
+        private void ReplaceFormControls() {
             //thanks SO: https://stackoverflow.com/a/3426721
             //First set all the StringOptions to UI
-            foreach (TextBox b in GetAllFormControls(this, typeof(TextBox)))
-            {
-                foreach (FieldInfo fieldInfo in settingsFile.StringSettings.GetType().GetFields())
-                {
+            foreach (TextBox b in GetAllFormControls(this, typeof(TextBox))) {
+                foreach (FieldInfo fieldInfo in settingsFile.StringSettings.GetType().GetFields()) {
                     StringOption? option = fieldInfo.GetValue(settingsFile.StringSettings) as StringOption;
 
                     if (option == null)
                         break;
 
-                    if (b.Name == option.ComponentName)
-                    {
+                    if (b.Name == option.ComponentName) {
                         b.Text = option.Value;
                         break;
                     }
@@ -229,17 +208,14 @@ namespace BotwRando
             }
 
             //After that all CheckBoxOptions
-            foreach (CheckBox c in GetAllFormControls(this, typeof(CheckBox)))
-            {
-                foreach (FieldInfo fieldInfo in settingsFile.CheckBoxSettings.GetType().GetFields())
-                {
+            foreach (CheckBox c in GetAllFormControls(this, typeof(CheckBox))) {
+                foreach (FieldInfo fieldInfo in settingsFile.CheckBoxSettings.GetType().GetFields()) {
                     CheckBoxOption? option = fieldInfo.GetValue(settingsFile.CheckBoxSettings) as CheckBoxOption;
 
                     if (option == null)
                         break;
 
-                    if (c.Name == option.ComponentName)
-                    {
+                    if (c.Name == option.ComponentName) {
                         c.Checked = option.Value;
                         break;
                     }
@@ -247,17 +223,14 @@ namespace BotwRando
             }
 
             //ALL THE MANY NUMBERIC DROPDOWNS
-            foreach (NumericUpDown n in GetAllFormControls(this, typeof(NumericUpDown)))
-            {
-                foreach (FieldInfo fieldInfo in settingsFile.IntSettings.GetType().GetFields())
-                {
+            foreach (NumericUpDown n in GetAllFormControls(this, typeof(NumericUpDown))) {
+                foreach (FieldInfo fieldInfo in settingsFile.IntSettings.GetType().GetFields()) {
                     IntOption? option = fieldInfo.GetValue(settingsFile.IntSettings) as IntOption;
 
                     if (option == null)
                         break;
 
-                    if (n.Name == option.ComponentName)
-                    {
+                    if (n.Name == option.ComponentName) {
                         n.Value = option.Value;
                         break;
                     }
@@ -265,8 +238,7 @@ namespace BotwRando
             }
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
+        private void Form1_Load(object sender, EventArgs e) {
             Helpers.LoadSettings(SETTINGS_PATH, ref settingsFile);
 
             ReplaceFormControls();
@@ -279,6 +251,12 @@ namespace BotwRando
 
             // Int Options
             chaosChanceInput.ValueChanged += (sender, e) => ChangedNumericUpDown(chaosChanceInput, ref settingsFile.IntSettings.ChaosChance);
+            enemyVarietyInput.ValueChanged += (sender, e) => ChangedNumericUpDown(enemyVarietyInput, ref settingsFile.IntSettings.EnemyVariety);
+            animalVarietyInput.ValueChanged += (sender, e) => ChangedNumericUpDown(animalVarietyInput, ref settingsFile.IntSettings.AnimalVariety);
+            smallAnimalVarietyInput.ValueChanged += (sender, e) => ChangedNumericUpDown(smallAnimalVarietyInput, ref settingsFile.IntSettings.SmallAnimalVariety);
+            weaponVarietyInput.ValueChanged += (sender, e) => ChangedNumericUpDown(weaponVarietyInput, ref settingsFile.IntSettings.WeaponVariety);
+            plantVarietyInput.ValueChanged += (sender, e) => ChangedNumericUpDown(plantVarietyInput, ref settingsFile.IntSettings.PlantVariety);
+            materialVarietyInput.ValueChanged += (sender, e) => ChangedNumericUpDown(materialVarietyInput, ref settingsFile.IntSettings.MaterialVariety);
 
             // String Options
             baseButton.Click += (sender, e) => BrowseButtonClick(baseTextBox, "Open the \"content\" folder that contains the base BotW game", ref settingsFile.StringSettings.BasePath);
@@ -314,8 +292,16 @@ namespace BotwRando
             randomizeOresCheckbox.CheckedChanged += (sender, e) => CheckedBox(randomizeOresCheckbox, ref settingsFile.CheckBoxSettings.RandomizeOresCheckbox);
             randomizeRupeesCheckbox.CheckedChanged += (sender, e) => CheckedBox(randomizeOresCheckbox, ref settingsFile.CheckBoxSettings.RandomizeOresCheckbox);
             randomizeArrowsCheckbox.CheckedChanged += (sender, e) => CheckedBox(randomizeArrowsCheckbox, ref settingsFile.CheckBoxSettings.RandomizeArrowsCheckbox);
-            randomizeArmorShopsCheckbox.CheckedChanged += (sender, e) => CheckedBox(randomizeArmorShopsCheckbox, ref settingsFile.CheckBoxSettings.RandomizeArmorShops);
+            randomizeArmorShopsCheckbox.CheckedChanged += (sender, e) => CheckedBox(randomizeArmorShopsCheckbox, ref settingsFile.CheckBoxSettings.RandomizeArmorShopsCheckbox);
             swapmodeCheckbox.CheckedChanged += (sender, e) => CheckedBox(swapmodeCheckbox, ref settingsFile.CheckBoxSettings.SwapmodeCheckbox);
+        }
+
+        private void botwRandomizerLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
+            var psi = new ProcessStartInfo {
+                FileName = "https://github.com/Toxijuice/BotwRandomizer",
+                UseShellExecute = true
+            };
+            Process.Start(psi);
         }
     }
 }

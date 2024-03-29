@@ -10,20 +10,20 @@ namespace BotwRandoLib {
         private BotwObjects oLists;
         private Random random;
 
-        public BotwObjectMap(Random random, BotwObjects oLists) {
+        public BotwObjectMap(Random random, BotwObjects oLists, Dictionary<string, int> randomizationIntSettings) {
             map = new Dictionary<string, List<string>>();
 
             this.oLists = oLists;
             this.random = random;
 
-            GenerateWeaponMap();
-            GenerateEnemyMap(2);
+            GenerateWeaponMap(randomizationIntSettings["weaponVarietyInput"]);
+            GenerateEnemyMap(randomizationIntSettings["enemyVarietyInput"]);
             GenerateMannequinMap();
-            GenerateSmallAnimalMap(2);
-            GenerateAnimalMap(2);
-            GenerateMeatMap(2);
-            GeneratePlantMap(2);
-            GenerateMaterialMap();
+            GenerateSmallAnimalMap(randomizationIntSettings["smallAnimalVarietyInput"]);
+            GenerateAnimalMap(randomizationIntSettings["animalVarietyInput"]);
+            GenerateMeatMap(4);
+            GeneratePlantMap(randomizationIntSettings["plantVarietyInput"]);
+            GenerateMaterialMap(randomizationIntSettings["materialVarietyInput"]);
         }
 
         public void AddItemToMap(string input, string output) {
