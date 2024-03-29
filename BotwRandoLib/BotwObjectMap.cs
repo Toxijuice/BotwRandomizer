@@ -17,12 +17,12 @@ namespace BotwRandoLib {
             this.random = random;
 
             GenerateWeaponMap();
-            GenerateEnemyMap();
+            GenerateEnemyMap(2);
             GenerateMannequinMap();
-            GenerateSmallAnimalMap();
-            GenerateAnimalMap();
-            GenerateMeatMap();
-            GeneratePlantMap();
+            GenerateSmallAnimalMap(2);
+            GenerateAnimalMap(2);
+            GenerateMeatMap(2);
+            GeneratePlantMap(2);
             GenerateMaterialMap();
         }
 
@@ -76,7 +76,7 @@ namespace BotwRandoLib {
             }
         }
 
-        private void GenerateWeaponMap() {
+        private void GenerateWeaponMap(int amount = 1) {
             Console.WriteLine("Generating Weapon List");
             List<string>[] itemLists = {
                 oLists.swordList,
@@ -89,10 +89,10 @@ namespace BotwRandoLib {
                 oLists.arrowBundle2List
             };
 
-            AddPoolOfItemsToMap(itemLists);
+            for(int i = 0; i < amount; i++) AddPoolOfItemsToMap(itemLists);
         }
 
-        private void GenerateEnemyMap() {
+        private void GenerateEnemyMap(int amount = 1) {
             Console.WriteLine("Generating Enemy List");
             List<string>[] itemLists = {
                 oLists.enemyList,
@@ -113,19 +113,19 @@ namespace BotwRandoLib {
                 oLists.octorokList
             };
 
-            AddPoolOfItemsToMap(itemLists);
+            for(int i = 0; i < amount; i++) AddPoolOfItemsToMap(itemLists);
         }
 
-        private void GenerateMannequinMap() {
+        private void GenerateMannequinMap(int amount = 1) {
             Console.WriteLine("Generating Mannequin List");
             List<string>[] itemLists = {
                 oLists.mannequinList
             };
 
-            AddPoolOfItemsToMap(itemLists);
+            for(int i = 0; i < amount; i++) AddPoolOfItemsToMap(itemLists);
         }
 
-        private void GenerateSmallAnimalMap() {
+        private void GenerateSmallAnimalMap(int amount = 1) {
             Console.WriteLine("Generating SmallAnimal List");
             List<string>[] itemLists = {
                 oLists.insectList,
@@ -133,37 +133,37 @@ namespace BotwRandoLib {
                 oLists.fishList
             };
 
-            AddPoolOfItemsToMap(itemLists);
+            for(int i = 0; i < amount; i++) AddPoolOfItemsToMap(itemLists);
         }
 
-        private void GenerateAnimalMap() {
+        private void GenerateAnimalMap(int amount = 1) {
             Console.WriteLine("Generating Animal List");
             List<string>[] itemLists = {
                 oLists.AnimalList
             };
 
-            AddPoolOfItemsToMap(itemLists);
+            for(int i = 0; i < amount; i++) AddPoolOfItemsToMap(itemLists);
         }
 
-        private void GenerateMeatMap() {
+        private void GenerateMeatMap(int amount = 1) {
             Console.WriteLine("Generating Meat List");
             List<string>[] itemLists = {
                 oLists.meatList
             };
 
-            AddPoolOfItemsToMap(itemLists);
+            for(int i = 0; i < amount; i++) AddPoolOfItemsToMap(itemLists);
         }
 
-        private void GeneratePlantMap() {
+        private void GeneratePlantMap(int amount = 1) {
             Console.WriteLine("Generating Plant List");
             List<string>[] itemLists = {
                 oLists.plantList,
             };
 
-            AddPoolOfItemsToMap(itemLists);
+            for(int i = 0; i < amount; i++) AddPoolOfItemsToMap(itemLists);
         }
 
-        private void GenerateMaterialMap() {
+        private void GenerateMaterialMap(int amount = 1) {
             Console.WriteLine("Generating Plant List");
             List<string>[] itemLists = {
                 oLists.materialList,
@@ -174,7 +174,7 @@ namespace BotwRandoLib {
                 oLists.mineralList
             };
 
-            AddPoolOfItemsToMap(itemLists);
+            for(int i = 0; i < amount; i++) AddPoolOfItemsToMap(itemLists);
         }
 
     }
