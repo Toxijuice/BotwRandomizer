@@ -29,7 +29,7 @@ namespace BotwRandoLib {
         private const int SPIRIT_ORB_COUNT = 240;
         private const int CHEST_COUNT = 1398;
 
-        public const string VERSION = "2.1.1";
+        public const string VERSION = "2.2.0";
 
         /// <summary>
         /// Creates a Randomizer Graphic pack based on parameters. <paramref name="progress"></paramref> is used to keep track in which randomization phase its currently in.
