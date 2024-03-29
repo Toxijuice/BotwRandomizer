@@ -36,7 +36,7 @@ namespace BotwRando
             int maxProgress = 14;
             int lastProgress = -1;
 
-            Task.Run(() => Randomizer.RandomizeGame(basePath, updatePath, dlcPath, gfxPackPath, randoOptions, out progress, seedTextBox.Text));
+            Task.Run(() => Randomizer.RandomizeGame(basePath, updatePath, dlcPath, gfxPackPath, randoOptions, settingsFile.IntSettings.ChaosChance.Value, out progress, seedTextBox.Text));
 
             progressBar1.Maximum = maxProgress;
 
@@ -160,6 +160,42 @@ namespace BotwRando
             randomizeButton.Enabled = AreAllBrowseFieldsFilledIn();
         }
 
+        private void DirectoryTextboxChanged(TextBox textBox, ref StringOption setting){
+            if(!Directory.Exists(textBox.Text)){
+                MessageBox.Show("The path entered is not a valid directory.", "Wuh oh!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                randomizeButton.Enabled = false;
+                return;
+            }
+
+            string dirName = Helpers.GetDirName(textBox.Text);
+
+            // If we're on a botw Path, it needs to be named "content", if we're on a cemu path, it needs be named graphicPacks
+            string folderNameToCheck = textBox.Name != "gfxPackTextBox" ? "content" : "graphicPacks";
+
+            if (dirName == folderNameToCheck)
+            {
+                // Naming scheme is correct, adjust text box and save path to Settings
+                setting.Value = textBox.Text;
+                Helpers.SaveSettings(SETTINGS_PATH, settingsFile);
+            }
+            else
+            {
+                // Naming scheme is incorrect, show error
+                MessageBox.Show("The folder you have selected wasn't named \"" + folderNameToCheck + "\".", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
+            // Check if user did input all paths and if yes enable button
+            randomizeButton.Enabled = AreAllBrowseFieldsFilledIn();
+        }
+
+        private void ChangedNumericUpDown(NumericUpDown input, ref IntOption setting)
+        {
+            // Second, save the setting
+            setting.ComponentName = input.Name;
+            setting.Value = (int)input.Value;
+            Helpers.SaveSettings(SETTINGS_PATH, settingsFile);
+        }
+
         private void CheckedBox(CheckBox checkBox, ref CheckBoxOption setting)
         {
             // Second, save the setting
@@ -209,6 +245,24 @@ namespace BotwRando
                     }
                 }
             }
+
+            //ALL THE MANY NUMBERIC DROPDOWNS
+            foreach (NumericUpDown n in GetAllFormControls(this, typeof(NumericUpDown)))
+            {
+                foreach (FieldInfo fieldInfo in settingsFile.IntSettings.GetType().GetFields())
+                {
+                    IntOption? option = fieldInfo.GetValue(settingsFile.IntSettings) as IntOption;
+
+                    if (option == null)
+                        break;
+
+                    if (n.Name == option.ComponentName)
+                    {
+                        n.Value = option.Value;
+                        break;
+                    }
+                }
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -223,11 +277,24 @@ namespace BotwRando
 
             progressLabel.Text = "";
 
+            // Int Options
+            chaosChanceInput.ValueChanged += (sender, e) => ChangedNumericUpDown(chaosChanceInput, ref settingsFile.IntSettings.ChaosChance);
+
             // String Options
             baseButton.Click += (sender, e) => BrowseButtonClick(baseTextBox, "Open the \"content\" folder that contains the base BotW game", ref settingsFile.StringSettings.BasePath);
             updateButton.Click += (sender, e) => BrowseButtonClick(updateTextBox, "Open the \"content\" folder that contains the Update of BotW", ref settingsFile.StringSettings.UpdatePath);
             dlcButton.Click += (sender, e) => BrowseButtonClick(dlcTextBox, "Open the \"content\" folder that contains the DLC of BotW", ref settingsFile.StringSettings.DlcPath);
             gfxPackButton.Click += (sender, e) => BrowseButtonClick(gfxPackTextBox, "Open the \"graphicPacks\" folder in your Cemu folder", ref settingsFile.StringSettings.GfxPackPath);
+
+            baseTextBox.Validated += (sender, e) => DirectoryTextboxChanged(baseTextBox, ref settingsFile.StringSettings.BasePath);
+            updateTextBox.Validated += (sender, e) => DirectoryTextboxChanged(updateTextBox, ref settingsFile.StringSettings.UpdatePath);
+            dlcTextBox.Validated += (sender, e) => DirectoryTextboxChanged(dlcTextBox, ref settingsFile.StringSettings.DlcPath);
+            gfxPackTextBox.Validated += (sender, e) => DirectoryTextboxChanged(gfxPackTextBox, ref settingsFile.StringSettings.GfxPackPath);
+
+            baseTextBox.KeyUp += (sender, e) => { if (e.KeyCode == Keys.Return || e.KeyCode == Keys.Enter) DirectoryTextboxChanged(baseTextBox, ref settingsFile.StringSettings.BasePath); };
+            updateTextBox.KeyUp += (sender, e) => { if (e.KeyCode == Keys.Return || e.KeyCode == Keys.Enter) DirectoryTextboxChanged(updateTextBox, ref settingsFile.StringSettings.UpdatePath); };
+            dlcTextBox.KeyUp += (sender, e) => { if (e.KeyCode == Keys.Return || e.KeyCode == Keys.Enter) DirectoryTextboxChanged(dlcTextBox, ref settingsFile.StringSettings.DlcPath); };
+            gfxPackTextBox.KeyUp += (sender, e) => { if (e.KeyCode == Keys.Return || e.KeyCode == Keys.Enter) DirectoryTextboxChanged(gfxPackTextBox, ref settingsFile.StringSettings.GfxPackPath); };
 
             // CheckBox Options
             randomizeArmorCheckbox.CheckedChanged += (sender, e) => CheckedBox(randomizeArmorCheckbox, ref settingsFile.CheckBoxSettings.RandomizeArmorCheckbox);
@@ -248,7 +315,7 @@ namespace BotwRando
             randomizeRupeesCheckbox.CheckedChanged += (sender, e) => CheckedBox(randomizeOresCheckbox, ref settingsFile.CheckBoxSettings.RandomizeOresCheckbox);
             randomizeArrowsCheckbox.CheckedChanged += (sender, e) => CheckedBox(randomizeArrowsCheckbox, ref settingsFile.CheckBoxSettings.RandomizeArrowsCheckbox);
             randomizeArmorShopsCheckbox.CheckedChanged += (sender, e) => CheckedBox(randomizeArmorShopsCheckbox, ref settingsFile.CheckBoxSettings.RandomizeArmorShops);
-            chaosCheckbox.CheckedChanged += (sender, e) => CheckedBox(chaosCheckbox, ref settingsFile.CheckBoxSettings.ChaosCheckbox);
+            swapmodeCheckbox.CheckedChanged += (sender, e) => CheckedBox(swapmodeCheckbox, ref settingsFile.CheckBoxSettings.SwapmodeCheckbox);
         }
     }
 }

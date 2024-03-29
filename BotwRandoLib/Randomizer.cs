@@ -23,6 +23,7 @@ namespace BotwRandoLib {
         private static string spoilerLogPath = "";
 
         private static bool chaosmode = false;
+        private static int chaoschance = 200; // Percent chance * 100
         private static bool swapmode = true;
 
         private const int SPIRIT_ORB_COUNT = 240;
@@ -41,10 +42,16 @@ namespace BotwRandoLib {
         /// <param name="progress">Has values from 0-8, 100 being exit due to error.</param>
         /// <param name="seed"></param>
         /// <exception cref="ArgumentException"></exception>
-        public static void RandomizeGame(string basePath, string updatePath, string dlcPath, string gfxPackPath, Dictionary<string, bool> randomizationSettings, out int progress, string seed = null) {
+        public static void RandomizeGame(string basePath, string updatePath, string dlcPath, string gfxPackPath, Dictionary<string, bool> randomizationSettings, int chaoschance, out int progress, string seed = null) {
             if (String.IsNullOrWhiteSpace(seed)) seed = GenerateSeed();
 
-            chaosmode = randomizationSettings["chaosCheckbox"];
+            if(randomizationSettings.ContainsKey("swapmodeCheckbox")){
+                Randomizer.swapmode = randomizationSettings["swapmodeCheckbox"];
+            }else{
+                Randomizer.swapmode = true;
+            }
+            
+            Randomizer.chaoschance = chaoschance * 100;
 
             random = new Random(unchecked((int)Crc32.Compute(seed)));
 
@@ -621,8 +628,16 @@ namespace BotwRandoLib {
                 // Only randomize actor if the player chose to
                 if (ShouldBeRandomized(unitConfigName, randomizationSettings)) {
                     // Randomize the unit name of a map actor
-                    Console.WriteLine(string.Format("[{0}] {1} - {2}", chaosmode, mapType, unitConfigName));
-                    string newObject = chaosmode ? GetAnyRandomMapObject(unitConfigName) : swapmode ? GetRandomMapObjectSwap(unitConfigName) : GetRandomMapObject(unitConfigName);
+                    string newObject = null;
+
+                    if(random.Next(10001) <= chaoschance && !overworldObjectsTable.mannequinList.Contains(unitConfigName)) {
+                        newObject = GetAnyRandomMapObject(unitConfigName);
+                    } else if(swapmode){
+                        newObject = GetRandomMapObjectSwap(unitConfigName);
+                    }else{
+                        newObject = GetRandomMapObject(unitConfigName);
+                    }
+
                     if (newObject != null) {
                         ModifyActorName(ref actorObj, newObject, mapType);
                     }

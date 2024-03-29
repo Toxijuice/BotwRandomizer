@@ -49,6 +49,9 @@
             RandomizerToggleTabPage = new TabPage();
             miscGroupBox = new GroupBox();
             panel5 = new Panel();
+            swapmodeCheckbox = new CheckBox();
+            chaosChanceGroupBox = new GroupBox();
+            chaosChanceInput = new NumericUpDown();
             randomizeArmorShopsCheckbox = new CheckBox();
             randomizeRupeesCheckbox = new CheckBox();
             randomizeArrowsCheckbox = new CheckBox();
@@ -72,12 +75,13 @@
             randomizeSpearsCheckbox = new CheckBox();
             randomizeLongSwordsCheckbox = new CheckBox();
             progressLabel = new Label();
-            chaosCheckbox = new CheckBox();
             tabControl1.SuspendLayout();
             mainTabPage.SuspendLayout();
             RandomizerToggleTabPage.SuspendLayout();
             miscGroupBox.SuspendLayout();
             panel5.SuspendLayout();
+            chaosChanceGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)chaosChanceInput).BeginInit();
             overworldEntitiesGroupBox.SuspendLayout();
             panel3.SuspendLayout();
             EquipmentGroupBox.SuspendLayout();
@@ -294,11 +298,11 @@
             // miscGroupBox
             // 
             miscGroupBox.Controls.Add(panel5);
-            miscGroupBox.Location = new Point(8, 149);
+            miscGroupBox.Location = new Point(9, 121);
             miscGroupBox.Margin = new Padding(4, 3, 4, 3);
             miscGroupBox.Name = "miscGroupBox";
             miscGroupBox.Padding = new Padding(4, 3, 4, 3);
-            miscGroupBox.Size = new Size(349, 132);
+            miscGroupBox.Size = new Size(349, 162);
             miscGroupBox.TabIndex = 23;
             miscGroupBox.TabStop = false;
             miscGroupBox.Text = "Misc.";
@@ -306,15 +310,49 @@
             // panel5
             // 
             panel5.BorderStyle = BorderStyle.FixedSingle;
-            panel5.Controls.Add(chaosCheckbox);
+            panel5.Controls.Add(swapmodeCheckbox);
+            panel5.Controls.Add(chaosChanceGroupBox);
             panel5.Controls.Add(randomizeArmorShopsCheckbox);
             panel5.Controls.Add(randomizeRupeesCheckbox);
             panel5.Controls.Add(randomizeArrowsCheckbox);
             panel5.Location = new Point(6, 20);
             panel5.Margin = new Padding(4, 3, 4, 3);
             panel5.Name = "panel5";
-            panel5.Size = new Size(336, 105);
+            panel5.Size = new Size(336, 136);
             panel5.TabIndex = 24;
+            // 
+            // swapmodeCheckbox
+            // 
+            swapmodeCheckbox.AutoSize = true;
+            swapmodeCheckbox.Checked = true;
+            swapmodeCheckbox.CheckState = CheckState.Checked;
+            swapmodeCheckbox.Location = new Point(4, 112);
+            swapmodeCheckbox.Margin = new Padding(4, 3, 4, 3);
+            swapmodeCheckbox.Name = "swapmodeCheckbox";
+            swapmodeCheckbox.Size = new Size(126, 19);
+            swapmodeCheckbox.TabIndex = 32;
+            swapmodeCheckbox.Text = "Enable Swap Mode";
+            swapmodeCheckbox.UseVisualStyleBackColor = true;
+            // 
+            // chaosChanceGroupBox
+            // 
+            chaosChanceGroupBox.Controls.Add(chaosChanceInput);
+            chaosChanceGroupBox.Location = new Point(194, 3);
+            chaosChanceGroupBox.Name = "chaosChanceGroupBox";
+            chaosChanceGroupBox.Size = new Size(107, 47);
+            chaosChanceGroupBox.TabIndex = 31;
+            chaosChanceGroupBox.TabStop = false;
+            chaosChanceGroupBox.Text = "Chaos Chance";
+            // 
+            // chaosChanceInput
+            // 
+            chaosChanceInput.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            chaosChanceInput.Increment = new decimal(new int[] { 5, 0, 0, 0 });
+            chaosChanceInput.Location = new Point(6, 17);
+            chaosChanceInput.Name = "chaosChanceInput";
+            chaosChanceInput.RightToLeft = RightToLeft.No;
+            chaosChanceInput.Size = new Size(95, 23);
+            chaosChanceInput.TabIndex = 30;
             // 
             // randomizeArmorShopsCheckbox
             // 
@@ -356,7 +394,7 @@
             overworldEntitiesGroupBox.Margin = new Padding(4, 3, 4, 3);
             overworldEntitiesGroupBox.Name = "overworldEntitiesGroupBox";
             overworldEntitiesGroupBox.Padding = new Padding(4, 3, 4, 3);
-            overworldEntitiesGroupBox.Size = new Size(329, 273);
+            overworldEntitiesGroupBox.Size = new Size(329, 276);
             overworldEntitiesGroupBox.TabIndex = 22;
             overworldEntitiesGroupBox.TabStop = false;
             overworldEntitiesGroupBox.Text = "Overworld Entities";
@@ -376,13 +414,13 @@
             panel3.Location = new Point(9, 20);
             panel3.Margin = new Padding(4, 3, 4, 3);
             panel3.Name = "panel3";
-            panel3.Size = new Size(312, 247);
+            panel3.Size = new Size(312, 250);
             panel3.TabIndex = 24;
             // 
             // randomizeOresCheckbox
             // 
             randomizeOresCheckbox.AutoSize = true;
-            randomizeOresCheckbox.Location = new Point(4, 189);
+            randomizeOresCheckbox.Location = new Point(4, 143);
             randomizeOresCheckbox.Margin = new Padding(4, 3, 4, 3);
             randomizeOresCheckbox.Name = "randomizeOresCheckbox";
             randomizeOresCheckbox.Size = new Size(112, 19);
@@ -393,7 +431,7 @@
             // randomizeSubBossesCheckbox
             // 
             randomizeSubBossesCheckbox.AutoSize = true;
-            randomizeSubBossesCheckbox.Location = new Point(4, 216);
+            randomizeSubBossesCheckbox.Location = new Point(4, 163);
             randomizeSubBossesCheckbox.Margin = new Padding(4, 3, 4, 3);
             randomizeSubBossesCheckbox.Name = "randomizeSubBossesCheckbox";
             randomizeSubBossesCheckbox.Size = new Size(148, 19);
@@ -404,7 +442,7 @@
             // randomizeInsectsCheckbox
             // 
             randomizeInsectsCheckbox.AutoSize = true;
-            randomizeInsectsCheckbox.Location = new Point(4, 30);
+            randomizeInsectsCheckbox.Location = new Point(4, 23);
             randomizeInsectsCheckbox.Margin = new Padding(4, 3, 4, 3);
             randomizeInsectsCheckbox.Name = "randomizeInsectsCheckbox";
             randomizeInsectsCheckbox.Size = new Size(124, 19);
@@ -415,7 +453,7 @@
             // randomizeFishesCheckbox
             // 
             randomizeFishesCheckbox.AutoSize = true;
-            randomizeFishesCheckbox.Location = new Point(4, 163);
+            randomizeFishesCheckbox.Location = new Point(4, 123);
             randomizeFishesCheckbox.Margin = new Padding(4, 3, 4, 3);
             randomizeFishesCheckbox.Name = "randomizeFishesCheckbox";
             randomizeFishesCheckbox.Size = new Size(120, 19);
@@ -437,7 +475,7 @@
             // randomizePlantsCheckbox
             // 
             randomizePlantsCheckbox.AutoSize = true;
-            randomizePlantsCheckbox.Location = new Point(4, 57);
+            randomizePlantsCheckbox.Location = new Point(4, 43);
             randomizePlantsCheckbox.Margin = new Padding(4, 3, 4, 3);
             randomizePlantsCheckbox.Name = "randomizePlantsCheckbox";
             randomizePlantsCheckbox.Size = new Size(120, 19);
@@ -448,7 +486,7 @@
             // randomizeFruitsCheckbox
             // 
             randomizeFruitsCheckbox.AutoSize = true;
-            randomizeFruitsCheckbox.Location = new Point(4, 110);
+            randomizeFruitsCheckbox.Location = new Point(4, 83);
             randomizeFruitsCheckbox.Margin = new Padding(4, 3, 4, 3);
             randomizeFruitsCheckbox.Name = "randomizeFruitsCheckbox";
             randomizeFruitsCheckbox.Size = new Size(117, 19);
@@ -459,7 +497,7 @@
             // randomizeAnimalsCheckbox
             // 
             randomizeAnimalsCheckbox.AutoSize = true;
-            randomizeAnimalsCheckbox.Location = new Point(4, 136);
+            randomizeAnimalsCheckbox.Location = new Point(4, 103);
             randomizeAnimalsCheckbox.Margin = new Padding(4, 3, 4, 3);
             randomizeAnimalsCheckbox.Name = "randomizeAnimalsCheckbox";
             randomizeAnimalsCheckbox.Size = new Size(131, 19);
@@ -470,7 +508,7 @@
             // randomizeMushroomsCheckbox
             // 
             randomizeMushroomsCheckbox.AutoSize = true;
-            randomizeMushroomsCheckbox.Location = new Point(4, 83);
+            randomizeMushroomsCheckbox.Location = new Point(4, 63);
             randomizeMushroomsCheckbox.Margin = new Padding(4, 3, 4, 3);
             randomizeMushroomsCheckbox.Name = "randomizeMushroomsCheckbox";
             randomizeMushroomsCheckbox.Size = new Size(152, 19);
@@ -485,7 +523,7 @@
             EquipmentGroupBox.Margin = new Padding(4, 3, 4, 3);
             EquipmentGroupBox.Name = "EquipmentGroupBox";
             EquipmentGroupBox.Padding = new Padding(4, 3, 4, 3);
-            EquipmentGroupBox.Size = new Size(349, 135);
+            EquipmentGroupBox.Size = new Size(349, 114);
             EquipmentGroupBox.TabIndex = 21;
             EquipmentGroupBox.TabStop = false;
             EquipmentGroupBox.Text = "Equipment";
@@ -502,13 +540,13 @@
             panel1.Location = new Point(6, 22);
             panel1.Margin = new Padding(4, 3, 4, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(336, 106);
+            panel1.Size = new Size(336, 85);
             panel1.TabIndex = 24;
             // 
             // randomizeShieldsCheckbox
             // 
             randomizeShieldsCheckbox.AutoSize = true;
-            randomizeShieldsCheckbox.Location = new Point(195, 3);
+            randomizeShieldsCheckbox.Location = new Point(4, 63);
             randomizeShieldsCheckbox.Margin = new Padding(4, 3, 4, 3);
             randomizeShieldsCheckbox.Name = "randomizeShieldsCheckbox";
             randomizeShieldsCheckbox.Size = new Size(125, 19);
@@ -530,7 +568,7 @@
             // randomizeBowsCheckbox
             // 
             randomizeBowsCheckbox.AutoSize = true;
-            randomizeBowsCheckbox.Location = new Point(195, 57);
+            randomizeBowsCheckbox.Location = new Point(195, 23);
             randomizeBowsCheckbox.Margin = new Padding(4, 3, 4, 3);
             randomizeBowsCheckbox.Name = "randomizeBowsCheckbox";
             randomizeBowsCheckbox.Size = new Size(116, 19);
@@ -541,7 +579,7 @@
             // randomizeSwordsCheckbox
             // 
             randomizeSwordsCheckbox.AutoSize = true;
-            randomizeSwordsCheckbox.Location = new Point(4, 30);
+            randomizeSwordsCheckbox.Location = new Point(4, 23);
             randomizeSwordsCheckbox.Margin = new Padding(4, 3, 4, 3);
             randomizeSwordsCheckbox.Name = "randomizeSwordsCheckbox";
             randomizeSwordsCheckbox.Size = new Size(126, 19);
@@ -552,7 +590,7 @@
             // randomizeSpearsCheckbox
             // 
             randomizeSpearsCheckbox.AutoSize = true;
-            randomizeSpearsCheckbox.Location = new Point(195, 30);
+            randomizeSpearsCheckbox.Location = new Point(195, 3);
             randomizeSpearsCheckbox.Margin = new Padding(4, 3, 4, 3);
             randomizeSpearsCheckbox.Name = "randomizeSpearsCheckbox";
             randomizeSpearsCheckbox.Size = new Size(122, 19);
@@ -563,7 +601,7 @@
             // randomizeLongSwordsCheckbox
             // 
             randomizeLongSwordsCheckbox.AutoSize = true;
-            randomizeLongSwordsCheckbox.Location = new Point(4, 57);
+            randomizeLongSwordsCheckbox.Location = new Point(4, 43);
             randomizeLongSwordsCheckbox.Margin = new Padding(4, 3, 4, 3);
             randomizeLongSwordsCheckbox.Name = "randomizeLongSwordsCheckbox";
             randomizeLongSwordsCheckbox.Size = new Size(156, 19);
@@ -581,17 +619,6 @@
             progressLabel.TabIndex = 18;
             progressLabel.Text = "Lol So Random XD";
             progressLabel.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // chaosCheckbox
-            // 
-            chaosCheckbox.AutoSize = true;
-            chaosCheckbox.Location = new Point(4, 63);
-            chaosCheckbox.Margin = new Padding(4, 3, 4, 3);
-            chaosCheckbox.Name = "chaosCheckbox";
-            chaosCheckbox.Size = new Size(59, 19);
-            chaosCheckbox.TabIndex = 28;
-            chaosCheckbox.Text = "Chaos";
-            chaosCheckbox.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -615,6 +642,8 @@
             miscGroupBox.ResumeLayout(false);
             panel5.ResumeLayout(false);
             panel5.PerformLayout();
+            chaosChanceGroupBox.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)chaosChanceInput).EndInit();
             overworldEntitiesGroupBox.ResumeLayout(false);
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
@@ -671,6 +700,8 @@
         private CheckBox randomizeLongSwordsCheckbox;
         private CheckBox randomizeSpearsCheckbox;
         private Label progressLabel;
-        private CheckBox chaosCheckbox;
+        private NumericUpDown chaosChanceInput;
+        private GroupBox chaosChanceGroupBox;
+        private CheckBox swapmodeCheckbox;
     }
 }

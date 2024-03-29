@@ -6,6 +6,11 @@ namespace BotwRando
     {
         public StringSettings StringSettings { get; set; } = new StringSettings();
         public CheckBoxSettings CheckBoxSettings { get; set; } = new CheckBoxSettings();
+        public IntSettings IntSettings { get; set; } = new IntSettings();
+    }
+
+    public class IntSettings {
+        public IntOption ChaosChance = new IntOption("chaosChance", 0);
     }
 
     public class StringSettings
@@ -36,7 +41,7 @@ namespace BotwRando
         public CheckBoxOption RandomizeRupeesCheckbox = new CheckBoxOption("randomizeRupeesCheckbox", true);
         public CheckBoxOption RandomizeArrowsCheckbox = new CheckBoxOption("randomizeArrowsCheckbox", true);
         public CheckBoxOption RandomizeArmorShops = new CheckBoxOption("randomizeArmorShopsCheckbox", true);
-        public CheckBoxOption ChaosCheckbox = new CheckBoxOption("chaosCheckbox", false);
+        public CheckBoxOption SwapmodeCheckbox = new CheckBoxOption("swapmodeCheckbox", true);
 
         public Dictionary<string, bool> ToDictionary()
         {
@@ -51,6 +56,18 @@ namespace BotwRando
             }
 
             return dict;
+        }
+    }
+
+    public class IntOption
+    {
+        public string ComponentName { get; set; }
+        public int Value { get; set; }
+
+        public IntOption(string compname, int val)
+        {
+            this.ComponentName = compname;
+            this.Value = val;
         }
     }
 
@@ -77,4 +94,5 @@ namespace BotwRando
             this.Value = val;
         }
     }
+    
 }
